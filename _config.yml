@@ -96,8 +96,8 @@ google_analytics_tracking_id:
 facebook_like: false
 
 # Disqus Comments
-disqus_short_name: xushuwei
-disqus_show_comment_count: true
+#disqus_short_name: xushuwei
+#disqus_show_comment_count: true
 
 # Duoshuo Comments
 duoshuo_short_name: xushuwei202
