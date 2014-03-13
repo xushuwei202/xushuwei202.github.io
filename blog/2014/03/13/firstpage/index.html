@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - My Octopress Blog</title>
+  <title>搭建Octopress无法发现Source分支 - My Octopress Blog</title>
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content=" Blog Archive 2014 搭建Octopress无法发现Source分支
-Mar 13 2014 posted in github Recent Posts 搭建Octopress无法发现Source分支 ">
+  <meta name="description" content="Octopress已经成功部署完毕，但是按照Octopress上的教程把Source文件夹Push到我的Octopress博客上所在的repository进行备份时，发生错误： ERROR: Repository not found.
+fatal: The remote end hung up &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@ Mar 13 2014 posted in github Recent Posts 搭建Octopress无法发现Source分�
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://xushuwei202.github.io/blog/archives/">
+  <link rel="canonical" href="http://xushuwei202.github.io/blog/2014/03/13/firstpage/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -64,35 +64,103 @@ Mar 13 2014 posted in github Recent Posts 搭建Octopress无法发现Source分�
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">搭建Octopress无法发现Source分支</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-13T16:07:00+08:00" pubdate data-updated="true">Mar 13<span>th</span>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>Octopress已经成功部署完毕，但是按照Octopress上的教程把Source文件夹Push到我的Octopress博客上所在的repository进行备份时，发生错误：</p>
 
-  
-  <h2>2014</h2>
+<pre><code>ERROR: Repository not found.
+fatal: The remote end hung up unexpectedly  
+</code></pre>
 
-<article>
-  
-<h1><a href="/blog/2014/03/13/firstpage/">搭建Octopress无法发现Source分支</a></h1>
-<time datetime="2014-03-13T16:07:00+08:00" pubdate><span class='month'>Mar</span> <span class='day'>13</span> <span class='year'>2014</span></time>
+<p>要么</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/github/'>github</a></span>
-</footer>
+<pre><code>error: src refspec source does not match any.  
+error: failed to push some refs to 'git@ github.com USERNAME/ USERNAME.github.com.git'  
+</code></pre>
 
+<p><strong>主要原因：</strong> 把源代码Push到了Master仓库上<br/>
+<strong>解决方案：</strong></p>
 
-</article>
-
+<pre><code>git remote rm origin  
+git branch -D source  
+git remote add origin git@github.com:sandylaw/  sandylaw.github.com  
+git branch source  
+git commit -m "wenben"  
+git push origin source  
+</code></pre>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-13T16:07:00+08:00" pubdate data-updated="true">Mar 13<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/github/'>github</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xushuwei202.github.io/blog/2014/03/13/firstpage/" data-via="" data-counturl="http://xushuwei202.github.io/blog/2014/03/13/firstpage/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
