@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Day Day Up]]></title>
+  <link href="http://xushuwei202.github.io/atom.xml" rel="self"/>
+  <link href="http://xushuwei202.github.io/"/>
+  <updated>2014-03-13T21:15:22+08:00</updated>
+  <id>http://xushuwei202.github.io/</id>
+  <author>
+    <name><![CDATA[Steve Xu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[搭建Octopress无法发现Source分支]]></title>
+    <link href="http://xushuwei202.github.io/blog/2014/03/13/firstpage/"/>
+    <updated>2014-03-13T16:07:00+08:00</updated>
+    <id>http://xushuwei202.github.io/blog/2014/03/13/firstpage</id>
+    <content type="html"><![CDATA[<p>Octopress已经成功部署完毕，但是按照Octopress上的教程把Source文件夹Push到我的Octopress博客上所在的repository进行备份时，发生错误：</p>
+
+<pre><code>ERROR: Repository not found.
+fatal: The remote end hung up unexpectedly  
+</code></pre>
+
+<p>要么</p>
+
+<pre><code>error: src refspec source does not match any.  
+error: failed to push some refs to 'git@ github.com USERNAME/ USERNAME.github.com.git'  
+</code></pre>
+
+<p><strong>主要原因：</strong> 把源代码Push到了Master仓库上<br/>
+<strong>解决方案：</strong></p>
+
+<pre><code>git remote rm origin  
+git branch -D source  
+git remote add origin git@github.com:sandylaw/  sandylaw.github.com  
+git branch source  
+git commit -m "wenben"  
+git push origin source  
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
