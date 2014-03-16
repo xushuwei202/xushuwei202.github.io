@@ -9,8 +9,14 @@
   <meta name="author" content="Steve Xu">
 
   
-  <meta name="description" content="lua编程中，经常遇到函数的定义和调用，有时候用点号调用，有时候用冒号调用，这里简单的说明一下原理。 girl = {money = 200}
-function girl.goToMarket(girl ,someMoney) girl.money = girl.money - someMoney &hellip;">
+  <meta name="description" content="lua编程中，经常遇到函数的定义和调用，有时候用点号调用，有时候用冒号调用，这里简单的说明一下原理。 1
+2
+3
+4
+5
+6
+girl = {money = 200}
+function girl.goToMarket(girl ,someMoney) girl.money = girl.money &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -98,23 +104,38 @@ function girl.goToMarket(girl ,someMoney) girl.money = girl.money - someMoney &h
 
 <div class="entry-content"><p>lua编程中，经常遇到函数的定义和调用，有时候用点号调用，有时候用冒号调用，这里简单的说明一下原理。</p>
 
-<pre><code>girl = {money = 200}
-function girl.goToMarket(girl ,someMoney)
-    girl.money = girl.money - someMoney
-end
-girl.goToMarket(girl ,100)
-print(girl.money)
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>girl = {money = 200}
+</span><span class='line'>function girl.goToMarket(girl ,someMoney)
+</span><span class='line'>  girl.money = girl.money - someMoney
+</span><span class='line'>end
+</span><span class='line'>girl.goToMarket(girl ,100)
+</span><span class='line'>print(girl.money)</span></code></pre></td></tr></table></div></figure>
 
-<p>可以看出，这里进行了方法的点号定义和点号调用。</p>
 
-<pre><code>boy = {money = 200}
-function boy:goToMarket(someMoney)
-    self.money = self.money - someMoney
-end
-boy:goToMarket(100)
-print(boy.money)
-</code></pre>
+<p>
+可以看出，这里进行了方法的点号定义和点号调用。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>boy = {money = 200}
+</span><span class='line'>function boy:goToMarket(someMoney)
+</span><span class='line'>  self.money = self.money - someMoney
+</span><span class='line'>end
+</span><span class='line'>boy:goToMarket(100)
+</span><span class='line'>print(boy.money)</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
 
 <p>这里进行了冒号定义和冒号调用。
 以上的打印结果都是100。</p>
@@ -123,15 +144,22 @@ print(boy.money)
 当然了，我们也可以点号定义冒号调用，或者冒号定义点号调用
 如:</p>
 
-<pre><code>boy = {money = 200}
-function boy.goToMarket(self ,someMoney)
-    self.money = self.money - someMoney
-end
-boy:goToMarket(100)
-print(boy.money)
-</code></pre>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>boy = {money = 200}
+</span><span class='line'>function boy.goToMarket(self ,someMoney)
+</span><span class='line'>  self.money = self.money - someMoney
+</span><span class='line'>end
+</span><span class='line'>boy:goToMarket(100)
+</span><span class='line'>print(boy.money)</span></code></pre></td></tr></table></div></figure>
 
-<p>总结:冒号只是起了省略第一个参数self的作用，该self指向调用者本身，并没有其他特殊的地方。</p>
+
+<p>
+总结:冒号只是起了省略第一个参数self的作用，该self指向调用者本身，并没有其他特殊的地方。</p>
 </div>
 
 
