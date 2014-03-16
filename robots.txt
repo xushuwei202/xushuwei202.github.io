@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://xushuwei202.github.io/sitemap.xml 
+Sitemap: http://shuwei.me/sitemap.xml 

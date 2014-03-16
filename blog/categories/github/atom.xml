@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: github | Day Day Up]]></title>
-  <link href="http://xushuwei202.github.io/blog/categories/github/atom.xml" rel="self"/>
-  <link href="http://xushuwei202.github.io/"/>
-  <updated>2014-03-13T21:15:22+08:00</updated>
-  <id>http://xushuwei202.github.io/</id>
+  <link href="http://shuwei.me/blog/categories/github/atom.xml" rel="self"/>
+  <link href="http://shuwei.me/"/>
+  <updated>2014-03-16T14:21:43+08:00</updated>
+  <id>http://shuwei.me/</id>
   <author>
     <name><![CDATA[Steve Xu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[搭建Octopress无法发现Source分支]]></title>
-    <link href="http://xushuwei202.github.io/blog/2014/03/13/firstpage/"/>
+    <link href="http://shuwei.me/blog/2014/03/13/firstpage/"/>
     <updated>2014-03-13T16:07:00+08:00</updated>
-    <id>http://xushuwei202.github.io/blog/2014/03/13/firstpage</id>
+    <id>http://shuwei.me/blog/2014/03/13/firstpage</id>
     <content type="html"><![CDATA[<p>Octopress已经成功部署完毕，但是按照Octopress上的教程把Source文件夹Push到我的Octopress博客上所在的repository进行备份时，发生错误：</p>
 
 <pre><code>ERROR: Repository not found.

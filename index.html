@@ -9,8 +9,8 @@
   <meta name="author" content="Steve Xu">
 
   
-  <meta name="description" content="Octopress已经成功部署完毕，但是按照Octopress上的教程把Source文件夹Push到我的Octopress博客上所在的repository进行备份时，发生错误： ERROR: Repository not found.
-fatal: The remote end hung up &hellip;">
+  <meta name="description" content="lua编程中，经常遇到函数的定义和调用，有时候用点号调用，有时候用冒号调用，这里简单的说明一下原理。 girl = {money = 200}
+function girl.goToMarket(girl ,someMoney) girl.money = girl.money - someMoney &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@ fatal: The remote end hung up &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://xushuwei202.github.io/">
+  <link rel="canonical" href="http://shuwei.me/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -50,7 +50,7 @@ fatal: The remote end hung up &hellip;">
   
 <form action="https://www.google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:xushuwei202.github.io" />
+    <input type="hidden" name="q" value="site:shuwei.me" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -66,6 +66,81 @@ fatal: The remote end hung up &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/16/maohao/">理解lua 语言中的点、冒号与self</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-16T11:50:46+08:00" pubdate data-updated="true">Mar 16<span>th</span>, 2014</time>
+        		
+		
+		
+          | <a href="/blog/2014/03/16/maohao/#comments">Comments</a>
+         
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>lua编程中，经常遇到函数的定义和调用，有时候用点号调用，有时候用冒号调用，这里简单的说明一下原理。</p>
+
+<pre><code>girl = {money = 200}
+function girl.goToMarket(girl ,someMoney)
+    girl.money = girl.money - someMoney
+end
+girl.goToMarket(girl ,100)
+print(girl.money)
+</code></pre>
+
+<p>可以看出，这里进行了方法的点号定义和点号调用。</p>
+
+<pre><code>boy = {money = 200}
+function boy:goToMarket(someMoney)
+    self.money = self.money - someMoney
+end
+boy:goToMarket(100)
+print(boy.money)
+</code></pre>
+
+<p>这里进行了冒号定义和冒号调用。
+以上的打印结果都是100。</p>
+
+<p>可以看出，冒号定义和冒号调用其实跟上面的效果一样，只是把第一个隐藏参数省略了，而该参数self指向调用者自身
+当然了，我们也可以点号定义冒号调用，或者冒号定义点号调用
+如:</p>
+
+<pre><code>boy = {money = 200}
+function boy.goToMarket(self ,someMoney)
+    self.money = self.money - someMoney
+end
+boy:goToMarket(100)
+print(boy.money)
+</code></pre>
+
+<p>总结:冒号只是起了省略第一个参数self的作用，该self指向调用者本身，并没有其他特殊的地方。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -140,11 +215,16 @@ git push origin source
   <h1>Categories</h1>
   <ul id="categories">
     <li class='category'><a href='/blog/categories/github/'>github (1)</a></li>
+<li class='category'><a href='/blog/categories/lua/'>lua (1)</a></li>
 
   </ul>
 </section><section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/03/16/maohao/">理解lua 语言中的点、冒号与self</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2014/03/13/firstpage/">搭建Octopress无法发现Source分支</a>
