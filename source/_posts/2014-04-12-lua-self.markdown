@@ -13,24 +13,30 @@ categories: lua
 lua中self指的是当前方法所属的table。一般来讲self可以理解为当前对象，但是在创建一个“类”的实例的时候，它代表的确是基类，而非当前对象。
 下面上代码：
 
-base = {}
-
-function base:new(id)
+    base = {}
+    
+    function base:new(id)
     local o = {}
     setmetatable(o, self)
     self.__index = self
-    self.gg= id                   ------------此处的self指的是base这个table，而不是你新创建的o。此处对self的操作，会影响其他实例。因为base被改变了
+    ------------此处的self指的是base这个table，而不是你新创建的o。此处对self的操作，会影响其他实例。因为base被改变了
+    self.gg= id   
     return o
-end
-
-function base:add(v)
-    self.gg = v                  -------------此处self指的是当前实例，即new方法中的o，而不是base
-end
-
-a1 = base:new(12)
-a2 = base:new(4)    -------修改了所有以base为metatable的实例（table）
-
-print(a1.gg)  -- 这里显示的是4，如果把new方法中的self.gg=id改为 o.gg=id，那么此处显示12
-a2:add(13)
-print(a1.gg)  -- 由于add方法修改的self是当前实例，而不是base，因此a2的add方法，不会影响a1
-print(a2.gg)
+    end
+    
+    function base:add(v)
+    -------------此处self指的是当前实例，即new方法中的o，而不是base
+    self.gg = v  
+    end
+    
+    a1 = base:new(12)
+    -------修改了所有以base为metatable的实例（table）
+    a2 = base:new(4)
+    
+    -- 这里显示的是4，如果把new方法中的self.gg=id改为 o.gg=id，那么此处显示12
+    print(a1.gg)  
+    a2:add(13)
+    
+     -- 由于add方法修改的self是当前实例，而不是base，因此a2的add方法，不会影响a1
+    print(a1.gg) 
+    print(a2.gg)
