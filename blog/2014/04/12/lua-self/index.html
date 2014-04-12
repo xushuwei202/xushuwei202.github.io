@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: lua - Day Day Up</title>
+  <title>lua面向对象编程时要注意的self - Day Day Up</title>
   <meta name="author" content="Steve Xu">
 
   
-  <meta name="description" content="Category: lua">
+  <meta name="description" content="在lua开发中，开发者常常使用table配合metatable来实现面向对象的机制。 但是由于lua本身并没有对面向对象有先天的支持，因此有些地方需要注意，譬如：self这个关键字，它和python等具有面向对象支持的语言中的语境有相似性，但又具有明显的差别。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://shuwei.meblog/categories/lua/">
+  <link rel="canonical" href="http://shuwei.me/blog/2014/04/12/lua-self/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -64,52 +64,156 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Lua</h1>
+    
+      <h1 class="entry-title">Lua面向对象编程时要注意的self</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-12T22:28:11+08:00" pubdate data-updated="true">Apr 12<span>th</span>, 2014</time>
+        		
+		
+		
+          | <a href="#comments">Comments</a>
+         
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>在lua开发中，开发者常常使用table配合metatable来实现面向对象的机制。</p>
 
-  
-  <h2>2014</h2>
+<p>但是由于lua本身并没有对面向对象有先天的支持，因此有些地方需要注意，譬如：self这个关键字，它和python等具有面向对象支持的语言中的语境有相似性，但又具有明显的差别。</p>
 
-<article>
-  
-<h1><a href="/blog/2014/04/12/lua-self/">lua面向对象编程时要注意的self</a></h1>
-<time datetime="2014-04-12T22:28:11+08:00" pubdate><span class='month'>Apr</span> <span class='day'>12</span> <span class='year'>2014</span></time>
+<p>lua中self指的是当前方法所属的table。一般来讲self可以理解为当前对象，但是在创建一个“类”的实例的时候，它代表的确是基类，而非当前对象。
+下面上代码：</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/lua/'>lua</a></span>
-</footer>
+<p>base = {}</p>
 
+<p>function base:new(id)</p>
 
-</article>
+<pre><code>local o = {}
+setmetatable(o, self)
+self.__index = self
+self.gg= id                   ------------此处的self指的是base这个table，而不是你新创建的o。此处对self的操作，会影响其他实例。因为base被改变了
+return o
+</code></pre>
 
+<p>end</p>
 
+<p>function base:add(v)</p>
 
-<article>
-  
-<h1><a href="/blog/2014/03/16/maohao/">理解lua 语言中的点、冒号与self</a></h1>
-<time datetime="2014-03-16T11:50:46+08:00" pubdate><span class='month'>Mar</span> <span class='day'>16</span> <span class='year'>2014</span></time>
+<pre><code>self.gg = v                  -------------此处self指的是当前实例，即new方法中的o，而不是base
+</code></pre>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/lua/'>lua</a></span>
-</footer>
+<p>end</p>
 
+<p>a1 = base:new(12)
+a2 = base:new(4)    &mdash;&mdash;&mdash;-修改了所有以base为metatable的实例（table）</p>
 
-</article>
-
+<p>print(a1.gg)  &mdash; 这里显示的是4，如果把new方法中的self.gg=id改为 o.gg=id，那么此处显示12
+a2:add(13)
+print(a1.gg)  &mdash; 由于add方法修改的self是当前实例，而不是base，因此a2的add方法，不会影响a1
+print(a2.gg)</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Steve Xu</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-12T22:28:11+08:00" pubdate data-updated="true">Apr 12<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/lua/'>lua</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+	<!--
+	  
+	  
+	  
+	-->
+
+
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style_32x32">
+		<a class="jiathis_button_qzone"></a>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_tqq"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_renren"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+		<a class="jiathis_counter_style"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1394711177099989" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/03/16/maohao/" title="Previous Post: 理解lua 语言中的点、冒号与self">&laquo; 理解lua 语言中的点、冒号与self</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 
+
+  <section>
+    <h1>Comments</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN titlecase一定要写成 site.titlecase-->
+<div class="ds-thread" data-title=""></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"xushuwei202"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END --></div>
+  </section>
 
 
 </div>

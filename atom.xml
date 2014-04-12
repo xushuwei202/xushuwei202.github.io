@@ -4,7 +4,7 @@
   <title><![CDATA[Day Day Up]]></title>
   <link href="http://shuwei.me/atom.xml" rel="self"/>
   <link href="http://shuwei.me/"/>
-  <updated>2014-03-31T21:49:29+08:00</updated>
+  <updated>2014-04-12T22:31:49+08:00</updated>
   <id>http://shuwei.me/</id>
   <author>
     <name><![CDATA[Steve Xu]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[lua面向对象编程时要注意的self]]></title>
+    <link href="http://shuwei.me/blog/2014/04/12/lua-self/"/>
+    <updated>2014-04-12T22:28:11+08:00</updated>
+    <id>http://shuwei.me/blog/2014/04/12/lua-self</id>
+    <content type="html"><![CDATA[<p>在lua开发中，开发者常常使用table配合metatable来实现面向对象的机制。</p>
+
+<p>但是由于lua本身并没有对面向对象有先天的支持，因此有些地方需要注意，譬如：self这个关键字，它和python等具有面向对象支持的语言中的语境有相似性，但又具有明显的差别。</p>
+
+<p>lua中self指的是当前方法所属的table。一般来讲self可以理解为当前对象，但是在创建一个“类”的实例的时候，它代表的确是基类，而非当前对象。
+下面上代码：</p>
+
+<p>base = {}</p>
+
+<p>function base:new(id)</p>
+
+<pre><code>local o = {}
+setmetatable(o, self)
+self.__index = self
+self.gg= id                   ------------此处的self指的是base这个table，而不是你新创建的o。此处对self的操作，会影响其他实例。因为base被改变了
+return o
+</code></pre>
+
+<p>end</p>
+
+<p>function base:add(v)</p>
+
+<pre><code>self.gg = v                  -------------此处self指的是当前实例，即new方法中的o，而不是base
+</code></pre>
+
+<p>end</p>
+
+<p>a1 = base:new(12)
+a2 = base:new(4)    &mdash;&mdash;&mdash;-修改了所有以base为metatable的实例（table）</p>
+
+<p>print(a1.gg)  &mdash; 这里显示的是4，如果把new方法中的self.gg=id改为 o.gg=id，那么此处显示12
+a2:add(13)
+print(a1.gg)  &mdash; 由于add方法修改的self是当前实例，而不是base，因此a2的add方法，不会影响a1
+print(a2.gg)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[理解lua 语言中的点、冒号与self]]></title>
