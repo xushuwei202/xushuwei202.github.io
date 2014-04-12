@@ -1,24 +1,101 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Day Day Up]]></title>
-  <link href="http://shuwei.me/atom.xml" rel="self"/>
-  <link href="http://shuwei.me/"/>
-  <updated>2014-04-12T22:57:38+08:00</updated>
-  <id>http://shuwei.me/</id>
-  <author>
-    <name><![CDATA[Steve Xu]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Lua中的面向对象实现探讨 - Day Day Up</title>
+  <meta name="author" content="Steve Xu">
 
   
-  <entry>
-    <title type="html"><![CDATA[Lua中的面向对象实现探讨]]></title>
-    <link href="http://shuwei.me/blog/2014/04/12/lua-oop/"/>
-    <updated>2014-04-12T22:49:11+08:00</updated>
-    <id>http://shuwei.me/blog/2014/04/12/lua-oop</id>
-    <content type="html"><![CDATA[<p>元表概念</p>
+  <meta name="description" content="元表概念 Lua中，面向对向是用元表这种机制来实现的。元表是个很“道家”的机制，很深遂，很强大，里面有一些基本概念比较难理解透彻。不过，只有完全理解了元表，才能对Lua的面向对象使用自如，才能在写Lua代码的高级语法时游刃有余。 首先，一般来说，一个表和它的元表是不同的个体（不属于同一个表）， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://shuwei.me/blog/2014/04/12/lua-oop/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Day Day Up" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Day Day Up</a></h1>
+  
+    <h2>Think For Fun.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:shuwei.me" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+   <li><a href="http://my.zhaopin.com/myzhaopin/resume_preview.asp?ext_id=JR138165163R90000000000&resume_id=118743208&Version_Number=1&language_id=1">About Me</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Lua中的面向对象实现探讨</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-12T22:49:11+08:00" pubdate data-updated="true">Apr 12<span>th</span>, 2014</time>
+        		
+		
+		
+          | <a href="#comments">Comments</a>
+         
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>元表概念</p>
 
 <p>Lua中，面向对向是用元表这种机制来实现的。元表是个很“道家”的机制，很深遂，很强大，里面有一些基本概念比较难理解透彻。不过，只有完全理解了元表，才能对Lua的面向对象使用自如，才能在写Lua代码的高级语法时游刃有余。</p>
 
@@ -223,146 +300,183 @@ end
 <p>将生成函数封装起来，然后，只需使用 模块名.new() 就可以在模块外面生成一个A的实例对象了。</p>
 
 <p>差不多了吧，可以看到，这种类实现的机制是多么自洽，简洁，灵活，强大！不过要折磨下你的大脑了。</p>
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  <entry>
-    <title type="html"><![CDATA[lua面向对象编程时要注意的self]]></title>
-    <link href="http://shuwei.me/blog/2014/04/12/lua-self/"/>
-    <updated>2014-04-12T22:28:11+08:00</updated>
-    <id>http://shuwei.me/blog/2014/04/12/lua-self</id>
-    <content type="html"><![CDATA[<p>在lua开发中，开发者常常使用table配合metatable来实现面向对象的机制。</p>
 
-<p>但是由于lua本身并没有对面向对象有先天的支持，因此有些地方需要注意，譬如：self这个关键字，它和python等具有面向对象支持的语言中的语境有相似性，但又具有明显的差别。</p>
+<span class="byline author vcard">Posted by <span class="fn">Steve Xu</span></span>
 
-<p>lua中self指的是当前方法所属的table。一般来讲self可以理解为当前对象，但是在创建一个“类”的实例的时候，它代表的确是基类，而非当前对象。
-下面上代码：</p>
+      
 
-<pre><code>base = {}
 
-function base:new(id)
-local o = {}
-setmetatable(o, self)
-self.__index = self
-------------此处的self指的是base这个table，而不是你新创建的o。此处对self的操作，会影响其他实例。因为base被改变了
-self.gg= id   
-return o
-end
 
-function base:add(v)
--------------此处self指的是当前实例，即new方法中的o，而不是base
-self.gg = v  
-end
 
-a1 = base:new(12)
--------修改了所有以base为metatable的实例（table）
-a2 = base:new(4)
 
--- 这里显示的是4，如果把new方法中的self.gg=id改为 o.gg=id，那么此处显示12
-print(a1.gg)  
-a2:add(13)
 
- -- 由于add方法修改的self是当前实例，而不是base，因此a2的add方法，不会影响a1
-print(a1.gg) 
-print(a2.gg)
-</code></pre>
-]]></content>
-  </entry>
+
+
   
-  <entry>
-    <title type="html"><![CDATA[理解lua 语言中的点、冒号与self]]></title>
-    <link href="http://shuwei.me/blog/2014/03/16/maohao/"/>
-    <updated>2014-03-16T11:50:46+08:00</updated>
-    <id>http://shuwei.me/blog/2014/03/16/maohao</id>
-    <content type="html"><![CDATA[<p>lua编程中，经常遇到函数的定义和调用，有时候用点号调用，有时候用冒号调用，这里简单的说明一下原理。</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>girl = {money = 200}
-</span><span class='line'>function girl.goToMarket(girl ,someMoney)
-</span><span class='line'>  girl.money = girl.money - someMoney
-</span><span class='line'>end
-</span><span class='line'>girl.goToMarket(girl ,100)
-</span><span class='line'>print(girl.money)</span></code></pre></td></tr></table></div></figure>
 
 
-<p>
-可以看出，这里进行了方法的点号定义和点号调用。</p>
+<time datetime="2014-04-12T22:49:11+08:00" pubdate data-updated="true">Apr 12<span>th</span>, 2014</time>
+      
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>boy = {money = 200}
-</span><span class='line'>function boy:goToMarket(someMoney)
-</span><span class='line'>  self.money = self.money - someMoney
-</span><span class='line'>end
-</span><span class='line'>boy:goToMarket(100)
-</span><span class='line'>print(boy.money)</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>这里进行了冒号定义和冒号调用。
-以上的打印结果都是100。</p>
-
-<p>可以看出，冒号定义和冒号调用其实跟上面的效果一样，只是把第一个隐藏参数省略了，而该参数self指向调用者自身
-当然了，我们也可以点号定义冒号调用，或者冒号定义点号调用
-如:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>boy = {money = 200}
-</span><span class='line'>function boy.goToMarket(self ,someMoney)
-</span><span class='line'>  self.money = self.money - someMoney
-</span><span class='line'>end
-</span><span class='line'>boy:goToMarket(100)
-</span><span class='line'>print(boy.money)</span></code></pre></td></tr></table></div></figure>
-
-
-<p>
-总结:冒号只是起了省略第一个参数self的作用，该self指向调用者本身，并没有其他特殊的地方。</p>
-]]></content>
-  </entry>
+<span class="categories">
   
-  <entry>
-    <title type="html"><![CDATA[搭建Octopress无法发现Source分支]]></title>
-    <link href="http://shuwei.me/blog/2014/03/13/firstpage/"/>
-    <updated>2014-03-13T16:07:00+08:00</updated>
-    <id>http://shuwei.me/blog/2014/03/13/firstpage</id>
-    <content type="html"><![CDATA[<p>Octopress已经成功部署完毕，但是按照Octopress上的教程把Source文件夹Push到我的Octopress博客上所在的repository进行备份时，发生错误：</p>
-
-<pre><code>ERROR: Repository not found.
-fatal: The remote end hung up unexpectedly  
-</code></pre>
-
-<p>要么</p>
-
-<pre><code>error: src refspec source does not match any.  
-error: failed to push some refs to 'git@ github.com USERNAME/ USERNAME.github.com.git'  
-</code></pre>
-
-<p><strong>主要原因：</strong> 把源代码Push到了Master仓库上<br/>
-<strong>解决方案：</strong></p>
-
-<pre><code>git remote rm origin  
-git branch -D source  
-git remote add origin git@github.com:sandylaw/  sandylaw.github.com  
-git branch source  
-git commit -m "wenben"  
-git push origin source  
-</code></pre>
-]]></content>
-  </entry>
+    <a class='category' href='/blog/categories/lua/'>lua</a>
   
-</feed>
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+	<!--
+	  
+	  
+	  
+	-->
+
+
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style_32x32">
+		<a class="jiathis_button_qzone"></a>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_tqq"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_renren"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+		<a class="jiathis_counter_style"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1394711177099989" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/04/12/lua-self/" title="Previous Post: lua面向对象编程时要注意的self">&laquo; lua面向对象编程时要注意的self</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+
+  <section>
+    <h1>Comments</h1>
+    <div id="comments" aria-live="polite"><!-- Duoshuo Comment BEGIN titlecase一定要写成 site.titlecase-->
+<div class="ds-thread" data-title=""></div>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"xushuwei202"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+<!-- Duoshuo Comment END --></div>
+  </section>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Categories</h1>
+  <ul id="categories">
+    <li class='category'><a href='/blog/categories/github/'>github (1)</a></li>
+<li class='category'><a href='/blog/categories/lua/'>lua (3)</a></li>
+
+  </ul>
+</section><section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/04/12/lua-oop/">Lua中的面向对象实现探讨</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/04/12/lua-self/">lua面向对象编程时要注意的self</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/16/maohao/">理解lua 语言中的点、冒号与self</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/03/13/firstpage/">搭建Octopress无法发现Source分支</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+<h2>豆瓣阅读</h2>
+<div>
+    <script type="text/javascript" src="http://www.douban.com/service/badge/44484455/?selection=latest&amp;picsize=small&amp;hideself=on&amp;show=collection&amp;n=8&amp;hidelogo=on&amp;cat=book&amp;columns=3"></script>
+</div>
+</section>
+<section>
+  <h1>新浪微博</h1>
+  <ul id="weibo">
+    <li>
+<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=300&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=0&uid=1738030771&verifier=e5c30ddc&dpc=1"></iframe>
+	</li>
+  </ul>
+</section>
+<section>
+  <h1>友情链接</h1>
+  <ul>
+    <li>
+      <a href="http://wentao.me">文韬.秘</a>	  
+    </li>
+	<li>
+	 <a href="http://blog.bingo929.com">彬GO</a>	 
+	</li>
+	<li>
+	  <a href="http://www.jsbug.com/blog/">Lewis' Blog</a>
+	</li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Steve Xu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  - <span class="credit">Theme by <a href="http://www.gehaxelt.in">Gehaxelt</a></span>
+  <span class="credit">and <a href="http://www.it-solutions-neef.de">IT Solutions Neef</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
