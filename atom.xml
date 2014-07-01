@@ -4,7 +4,7 @@
   <title><![CDATA[Day Day Up]]></title>
   <link href="http://shuwei.me/atom.xml" rel="self"/>
   <link href="http://shuwei.me/"/>
-  <updated>2014-04-12T22:57:38+08:00</updated>
+  <updated>2014-07-01T15:02:19+08:00</updated>
   <id>http://shuwei.me/</id>
   <author>
     <name><![CDATA[Steve Xu]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[安装mysql5.7.3 出现错误Unable to update security settings. Access denied for user 'root'@'localhost']]></title>
+    <link href="http://shuwei.me/blog/2014/07/01/mysqlerror/"/>
+    <updated>2014-07-01T14:51:55+08:00</updated>
+    <id>http://shuwei.me/blog/2014/07/01/mysqlerror</id>
+    <content type="html"><![CDATA[<p>安装过mysql后，启动报错，又重新安装了一次mysql,在安装的过程当中出现以上错误，解决方案如下：在最后的配置页面“Current root password”选项不填写任何东西，只填写新的密码，即可解决问题。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Lua中的面向对象实现探讨]]></title>
