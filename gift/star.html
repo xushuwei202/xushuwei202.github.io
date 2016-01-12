@@ -183,19 +183,37 @@
 		    
 
 		    Physics.util.ticker.start();
+		    if (window.DeviceOrientationEvent) {
+		        var deviceOrientationHandler = function (event) {
 
-			window.ondeviceorientation =  function(e) 
-			{
-			    var ang;
-			    var o = window.orientation;
-			    ang = e.alpha;
-			    ang = Math.PI / 180 * ang;
-			    console.log(ang);
-			    var gx = gravityY * Math.sin(ang);
-			    var gy = gravityY * Math.cos(ang);
-			    gravity.setAcceleration({ x: -gx, y: gy });
+		            var pitch = Math.PI * event.beta / 180;
+		            var roll = Math.PI * event.gamma / 180;
+
+		            var acc = {
+		                x: Math.cos(pitch) * Math.sin(roll) * gravityY,
+		                y: Math.sin(pitch) * gravityY
+		            };
+
+		            world.one('step', function () {
+		                acceleration.setAcceleration(acc);
+		            });
+		        };
+		        window.addEventListener('deviceorientation',
+		            deviceOrientationHandler, false);
+		    }
+
+			// window.ondeviceorientation =  function(e) 
+			// {
+			//     var ang;
+			//     var o = window.orientation;
+			//     ang = e.alpha;
+			//     ang = Math.PI / 180 * ang;
+			//     console.log(ang);
+			//     var gx = gravityY * Math.sin(ang);
+			//     var gy = gravityY * Math.cos(ang);
+			//     gravity.setAcceleration({ x: -gx, y: gy });
 			     
-			}
+			// }
 		    
 		});
 		});
