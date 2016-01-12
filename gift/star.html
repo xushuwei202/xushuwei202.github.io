@@ -107,7 +107,7 @@
 			    renderer
 			]);
 
-		   	var gravityY = 0.008;
+		   	var gravityY = 0.004;
 			var gravity = Physics.behavior('constant-acceleration', {
 			    acc: { x : 0, y: gravityY * options.gravityFactor }
 			});
@@ -163,7 +163,7 @@
 			        x: x,
 			        y: y,
 			        vx:  Math.random() * flag * 0.4,
-			        mass: 100,
+			        mass: 50,
 			        restitution: 0.2,
 			        radius: 8.5 
 			    });
