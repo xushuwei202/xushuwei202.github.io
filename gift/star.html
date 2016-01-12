@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>gift-animate</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0" />
+	<style>
+		html,body{
+			height: 100%;
+		}
+		body {
+			position: relative;
+			margin: 0;
+			padding: 0;
+			background-color: #fff;
+		}
+
+		button{
+			position: absolute;
+			z-index: 10;
+		}
+
+		#photonstorm {
+			position: absolute;
+			bottom: 16px;
+			right: 16px;
+		}
+
+		#pixi {
+			position: absolute;
+			bottom: 16px;
+			left: 16px;
+		}
+
+		canvas {
+			width: 100%;
+			height: 100%;
+			background-color: #000;
+		}
+
+	</style>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script src="pixi.min.js"></script>
+	<script src="physicsjs-full.min.js"></script>
+
+
+	<script type="text/javascript">//<![CDATA[
+		$(window).load(function(){
+		/**
+		 * PhysicsJS by Jasper Palfree <wellcaffeinated.net>
+		 * http://wellcaffeinated.net/PhysicsJS
+		 *
+		 * Simple Spin example for PhysicsJS
+		 */
+		Physics(function(world){
+		    
+		    var viewWidth = screen.width;
+		    var viewHeight = screen.height;
+		    
+		    var renderer = Physics.renderer('pixi', {
+		        el: 'viewport',
+		        width: viewWidth,
+		        height: viewHeight,
+		        meta: false
+		        
+		    });
+		    
+		    // add the renderer
+		    world.add( renderer );
+		    // render on each step
+		    world.on('step', function(){
+		        world.render();
+		    });
+		    
+		    // bounds of the window
+		    var viewportBounds = Physics.aabb(0, 0, viewWidth, viewHeight);
+		   	
+
+		   	world.add([
+			    Physics.behavior('edge-collision-detection', {
+			    	aabb: viewportBounds,
+		        	restitution: 0.99,
+		        	cof: 0.99
+		        }),
+			    Physics.behavior('body-collision-detection',  { el: renderer.container }),
+			    Physics.behavior('body-impulse-response'),
+			    Physics.behavior('sweep-prune'),
+			    renderer
+			]); 
+
+			var gravity = Physics.behavior('constant-acceleration', {
+			    acc: { x : 0, y: 0.0004 } // this is the default
+			});
+			world.add( gravity );
+  		
+		    Physics.body('wheel', 'circle', function( parent ){
+		        return {
+		            // no need for an init
+		            
+		            // spin the wheel at desired speed
+		            spin: function( speed ){
+		                // the wheels are spinning...
+		                this.state.angular.vel = speed;
+		            }
+		        };
+		    });
+		   	
+		    
+		    // subscribe to ticker to advance the simulation
+		    // 
+		    var lastTime = new Date().getTime(),
+		    	curTime = lastTime;
+		    var wheelArr = [];
+
+		    var ballindex = 0;
+		    Physics.util.ticker.on(function( time, dt ){
+		    	curTime = new Date().getTime();
+		    	if(curTime - lastTime >= 50) {
+		    		var left = false;
+		    		if(ballindex % 2 == 0) {
+		    			left =  true;
+		    		}
+
+		    		ballindex++;
+		    		createBall(left);
+
+		    		if(wheelArr.length >= 200) {
+		    			world.remove(wheelArr.shift());
+		    		}
+		    		lastTime = curTime;
+		    	}
+
+		        world.step( time );
+		    });
+
+		   
+		    function createBall (left) {
+		    	var myWheel = null;
+		    	var  x = 0;
+		    	var flag = 1;
+		    	if(!left) {
+		    		x = viewWidth;
+		    		flag = -1;
+		    	}
+
+		   		var  y = screen.height * 0.2;
+		   		myWheel = Physics.body('wheel', {
+			        x: x,
+			        y: y,
+			        vx:  Math.random() * flag * 0.6, // velocity in x-direction
+			        angularVelocity: (Math.random() - 0.5) * 0.001,
+			        mass: 30,
+			        restitution: 0.6,
+			        radius: 8.5 
+			    });
+
+			    myWheel.view = renderer.createDisplay('sprite', {
+				    texture: 'assets/star.png',
+				    anchor: {
+				        x: 0.5,
+				        y: 0.5
+				    }
+				});
+
+
+		   		wheelArr.push(myWheel);
+			    world.add( myWheel );
+		    }
+		    
+		    // start the ticker
+		    Physics.util.ticker.start();
+
+		 //    var swidth = screen.width;
+			// var sheight = swidth * 480 / 640 ;
+			// $('canvas').width(swidth).height(sheight);
+			// 
+			window.ondeviceorientation =  function(e) 
+			{
+				console.log(e);
+			    var ang;
+			    var o = window.orientation;  //获取设备方向
+			  
+			    ang = e.alpha;
+			    ang = Math.PI / 180 * ang;
+			    console.log(ang);
+			    var gx = 0.0004 * Math.sin(ang);
+			    var gy = 0.0004 * Math.cos(ang);
+			    gravity.setAcceleration({ x: gx, y: gy });
+			     
+			}
+		    
+		});
+		});//]]> 
+
+		</script>
+</head>
+<body>
+
+</body>
+</html>

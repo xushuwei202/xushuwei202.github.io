@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>gift-animate</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0" />
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #000000;
+		}
+
+		#photonstorm {
+			position: absolute;
+			bottom: 16px;
+			right: 16px;
+		}
+
+		#pixi {
+			position: absolute;
+			bottom: 16px;
+			left: 16px;
+		}
+	</style>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script src="pixi.min.js"></script>
+	<script src="TweenMax.js"></script>
+</head>
+<body>
+
+
+	<script>
+		var renderer = PIXI.autoDetectRenderer(640, 480);
+		document.body.appendChild(renderer.view);
+
+		var swidth = screen.width;
+		var sheight = swidth * 480 / 640 ;
+		$('canvas').width(swidth).height(sheight);
+
+		// create the root of the scene graph
+		var stage = new PIXI.Container();
+
+		 var bg = PIXI.Sprite.fromImage('assets/god-bg.png');
+        bg.x = 0;
+        bg.y = 0;
+        stage.addChild(bg);
+
+		PIXI.loader
+		    .add('assets/god.json')
+		    .load(onAssetsLoaded);
+
+
+
+		var movie;
+
+		function onAssetsLoaded()
+		{
+
+		    // create an array of textures from an image path
+		    var frames = [];
+
+		    for (var i = 1; i <= 17; i++) {
+		        var val = i < 10 ? '0' + i : i;
+
+		        // magically works since the spritesheet was loaded with the pixi loader
+		        frames.push(PIXI.Texture.fromFrame('frameC00' + val + '.png'));
+		    }
+
+
+		    // create a MovieClip (brings back memories from the days of Flash, right ?)
+		    movie = new PIXI.extras.MovieClip(frames);
+
+		    /*
+		     * A MovieClip inherits all the properties of a PIXI sprite
+		     * so you can change its position, its anchor, mask it, etc
+		     */
+		    movie.position.x = 320;
+		    movie.position.y = 240;
+		    movie.anchor.set(0.5);
+		    movie.animationSpeed = 0.5;
+
+		    movie.play();
+
+		    stage.addChild(movie);
+
+		    animate();
+
+		     var timeLine =  new TimelineMax({
+				paused: true
+			});
+			
+			timeLine.add(TweenMax.from(bg , .5, {alpha:0,  ease:Linear.easeNone}), 0);
+
+			timeLine.add(TweenMax.to(bg , .5, {alpha:0,  ease:Linear.easeNone}), .5);
+
+			timeLine.add(TweenMax.from(movie , 1, {alpha: 0, ease:Linear.easeNone}), .5);
+
+			timeLine.add(TweenMax.to(bg , 1, {alpha:0, ease:Linear.easeNone}), 1);
+
+			timeLine.add(TweenMax.to(movie , .5, {alpha: 0, ease:Linear.easeNone}), 3);
+
+			timeLine.play();
+		}
+
+		function animate() {
+
+		    // render the stage container
+		    renderer.render(stage);
+
+		    requestAnimationFrame(animate);
+		}
+	</script>
+
+	</body>
+</html>

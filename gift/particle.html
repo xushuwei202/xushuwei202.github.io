@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>gift-animate</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0" />
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #000000;
+		}
+
+		#photonstorm {
+			position: absolute;
+			bottom: 16px;
+			right: 16px;
+		}
+
+		#pixi {
+			position: absolute;
+			bottom: 16px;
+			left: 16px;
+		}
+	</style>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script src="pixi.min.js"></script>
+	<script src="pixi-particles.js"></script>
+	<script src="ParticleExample.js"></script>
+</head>
+<body>
+	<canvas id="stage" width="980" height="1743" style="cursor: inherit;"></canvas>
+
+	<script>
+			
+
+
+			
+
+			// See js/ParticleExample.js for actual setup
+			new ParticleExample(
+				// The image to use
+				["assets/flower.png"],
+
+				// Emitter configuration, edit this to change the look
+				// of the emitter
+				{
+					"alpha": {
+						"start": 0.5,
+						"end": 1
+					},
+					"scale": {
+						"start": 0.2,
+						"end": 0.4
+					},
+					"color": {
+						"start": "ffffff",
+						"end": "9ff3ff"
+					},
+					"speed": {
+						"start": 600,
+						"end": -200
+					},
+					"acceleration": {
+						"x":0,
+						"y": 500
+					},
+					"startRotation": {
+						"min": 250,
+						"max": 290
+					},
+					"rotationSpeed": {
+						"min": 10,
+						"max": 50
+					},
+					"lifetime": {
+						"min": 0.25,
+						"max": 5
+					},
+					"blendMode": "normal",
+					"frequency": 0.001,
+					"emitterLifetime": 100,
+					"maxParticles": 10000,
+					"pos": {
+						"x": 0,
+						"y": 0
+					},
+					"addAtBack": false,
+					"spawnType": "circle",
+					"spawnCircle": {
+						"x": 0,
+						"y": 0,
+						"r": 10
+					}
+				});
+		
+		
+	</script>
+
+	</body>
+</html>
