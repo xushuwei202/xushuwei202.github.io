@@ -57,14 +57,12 @@
 
 		    var isWebView = (iphone || ipad || ipod) && ua.match(/.*AppleWebKit(?!.*Safari)/i);
 
-		    alert(isWebView);
 		    var options = {
 			    gravityFactor: 1,
 			    warp: 1,
 			    renderSteps: 1
 			};
-			if (isWebView) {
-				alert('bbbb');
+			if (isWebView || android) {
 			    options = {
 			        gravityFactor: 2,
 			        warp: 5,
