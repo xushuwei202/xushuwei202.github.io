@@ -46,26 +46,29 @@
 
 	<script type="text/javascript">//<![CDATA[
 		$(window).load(function(){
-		/**
-		 * PhysicsJS by Jasper Palfree <wellcaffeinated.net>
-		 * http://wellcaffeinated.net/PhysicsJS
-		 *
-		 * Simple Spin example for PhysicsJS
-		 */
+		
 		Physics(function(world){
 
-			var ua = (window.navigator.appVersion.match(/android/gi), window.navigator.appVersion.match(/iphone/gi));
+			var ua = navigator.userAgent;
+			var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
+		    var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+		    var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
+		    var iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
 
-			var dpr = window.devicePixelRatio || 1;
-			if(ua) {
-				if(dpr > 3) {
-					dpr = 3;
-				}
-			} else {
-				dpr = 1;
+		    isWebView = (iphone || ipad || ipod) && ua.match(/.*AppleWebKit(?!.*Safari)/i);
+
+		    var options = {
+			    gravityFactor: 1,
+			    warp: 1,
+			    renderSteps: 1
+			};
+			if (isWebView) {
+			    options = {
+			        gravityFactor: 2,
+			        warp: 5,
+			        renderSteps: 2
+			    };
 			}
-
-			scale = 1 / dpr;
 
 		    var viewWidth = $(window).width();
 		    var viewHeight = $(window).height();
@@ -74,19 +77,21 @@
 		        width: viewWidth,
 		        height: viewHeight,
 		        meta: false
-		        
 		    });
 		    
-		    // add the renderer
+
 		    world.add( renderer );
-		    // render on each step
+
+		    var stepNo = 0;
 		    world.on('step', function(){
-		        world.render();
+		        ++stepNo;
+			    if (stepNo % options.renderSteps === 0) {
+			        world.render();
+			    }
 		    });
 		    
-		    // bounds of the window
+
 		    var viewportBounds = Physics.aabb(0, 0, viewWidth, viewHeight);
-		   	
 
 		   	world.add([
 			    Physics.behavior('edge-collision-detection', {
@@ -98,29 +103,25 @@
 			    Physics.behavior('body-impulse-response'),
 			    Physics.behavior('sweep-prune'),
 			    renderer
-			]); 
+			]);
 
-		   	var gravityY = 0.001;
+		   	var gravityY = 0.0004;
 			var gravity = Physics.behavior('constant-acceleration', {
-			    acc: { x : 0, y: gravityY } // this is the default
+			    acc: { x : 0, y: gravityY * options.gravityFactor }
 			});
 			world.add( gravity );
-  		
+
+			world.warp(options.warp);
+
 		    Physics.body('wheel', 'circle', function( parent ){
 		        return {
-		            // no need for an init
-		            
-		            // spin the wheel at desired speed
 		            spin: function( speed ){
-		                // the wheels are spinning...
 		                this.state.angular.vel = speed;
 		            }
 		        };
 		    });
-		   	
-		    
-		    // subscribe to ticker to advance the simulation
-		    // 
+
+
 		    var lastTime = new Date().getTime(),
 		    	curTime = lastTime;
 		    var wheelArr = [];
@@ -146,7 +147,6 @@
 		        world.step( time );
 		    });
 
-		   
 		    function createBall (left) {
 		    	var myWheel = null;
 		    	var  x = 0;
@@ -160,7 +160,7 @@
 		   		myWheel = Physics.body('wheel', {
 			        x: x,
 			        y: y,
-			        vx:  Math.random() * flag * 0.6, // velocity in x-direction
+			        vx:  Math.random() * flag * 0.6,
 			        angularVelocity: (Math.random() - 0.5) * 0.001,
 			        mass: 50,
 			        restitution: 0.6,
@@ -180,14 +180,13 @@
 			    world.add( myWheel );
 		    }
 		    
-		    // start the ticker
+
 		    Physics.util.ticker.start();
 
 			window.ondeviceorientation =  function(e) 
 			{
 			    var ang;
-			    var o = window.orientation;  //获取设备方向
-			  
+			    var o = window.orientation;
 			    ang = e.alpha;
 			    ang = Math.PI / 180 * ang;
 			    console.log(ang);
@@ -198,7 +197,7 @@
 			}
 		    
 		});
-		});//]]> 
+		});
 
 		</script>
 </head>
