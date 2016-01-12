@@ -184,7 +184,7 @@
 
 		    Physics.util.ticker.start();
 		    if (window.DeviceOrientationEvent) {
-		        var deviceOrientationHandler = function (event) {
+		        window.ondeviceorientation = function (event) {
 
 		            var pitch = Math.PI * event.beta / 180;
 		            var roll = Math.PI * event.gamma / 180;
@@ -198,8 +198,7 @@
 		                gravity.setAcceleration(acc);
 		            });
 		        };
-		        window.addEventListener('deviceorientation',
-		            deviceOrientationHandler, false);
+		        
 		    }
 
 			// window.ondeviceorientation =  function(e) 
