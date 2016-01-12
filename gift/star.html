@@ -54,8 +54,8 @@
 		 */
 		Physics(function(world){
 		    
-		    var viewWidth = screen.width;
-		    var viewHeight = screen.height;
+		    var viewWidth = $(window).width;
+		    var viewHeight = $(window).height;
 		    
 		    var renderer = Physics.renderer('pixi', {
 		        el: 'viewport',
@@ -124,7 +124,7 @@
 		    		ballindex++;
 		    		createBall(left);
 
-		    		if(wheelArr.length >= 200) {
+		    		if(wheelArr.length >= 100) {
 		    			world.remove(wheelArr.shift());
 		    		}
 		    		lastTime = curTime;
@@ -185,7 +185,7 @@
 			    console.log(ang);
 			    var gx = 0.0004 * Math.sin(ang);
 			    var gy = 0.0004 * Math.cos(ang);
-			    gravity.setAcceleration({ x: gx, y: gy });
+			    gravity.setAcceleration({ x: -gx, y: gy });
 			     
 			}
 		    
