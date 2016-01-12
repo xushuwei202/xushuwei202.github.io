@@ -53,8 +53,7 @@
 		 * Simple Spin example for PhysicsJS
 		 */
 		Physics(function(world){
-		   	
-		   
+
 			var ua = (window.navigator.appVersion.match(/android/gi), window.navigator.appVersion.match(/iphone/gi));
 
 			var dpr = window.devicePixelRatio || 1;
@@ -68,10 +67,8 @@
 
 			scale = 1 / dpr;
 
-
-		    var viewWidth = $(window).innerWidth * scale;
-		    var viewHeight = $(window).innerHeight * scale;
-		    
+		    var viewWidth = $(window).width();
+		    var viewHeight = $(window).height();
 		    var renderer = Physics.renderer('pixi', {
 		        el: 'viewport',
 		        width: viewWidth,
