@@ -55,8 +55,9 @@
 		    var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
 		    var iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
 
-		    isWebView = (iphone || ipad || ipod) && ua.match(/.*AppleWebKit(?!.*Safari)/i);
+		    var isWebView = (iphone || ipad || ipod) && ua.match(/.*AppleWebKit(?!.*Safari)/i);
 
+		    alert(isWebView);
 		    var options = {
 			    gravityFactor: 1,
 			    warp: 1,
