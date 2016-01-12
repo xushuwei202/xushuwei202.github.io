@@ -60,13 +60,15 @@
 		    var options = {
 			    gravityFactor: 1,
 			    warp: 1,
-			    renderSteps: 1
+			    renderSteps: 1,
+			    ballNum : 100
 			};
 			if (isWebView || android) {
 			    options = {
 			        gravityFactor: 2,
 			        warp: 5,
-			        renderSteps: 2
+			        renderSteps: 2,
+			        ballNum: 50
 			    };
 			}
 
@@ -138,7 +140,7 @@
 		    		ballindex++;
 		    		createBall(left);
 
-		    		if(wheelArr.length >= 50) {
+		    		if(wheelArr.length >= options.ballNum) {
 		    			world.remove(wheelArr.shift());
 		    		}
 		    		lastTime = curTime;
