@@ -107,7 +107,7 @@
 			    renderer
 			]);
 
-		   	var gravityY = 0.004;
+		   	var gravityY = 0.0004;
 			var gravity = Physics.behavior('constant-acceleration', {
 			    acc: { x : 0, y: gravityY * options.gravityFactor }
 			});
@@ -200,19 +200,6 @@
 		        };
 		        
 		    }
-
-			// window.ondeviceorientation =  function(e) 
-			// {
-			//     var ang;
-			//     var o = window.orientation;
-			//     ang = e.alpha;
-			//     ang = Math.PI / 180 * ang;
-			//     console.log(ang);
-			//     var gx = gravityY * Math.sin(ang);
-			//     var gy = gravityY * Math.cos(ang);
-			//     gravity.setAcceleration({ x: -gx, y: gy });
-			     
-			// }
 		    
 		});
 		});
