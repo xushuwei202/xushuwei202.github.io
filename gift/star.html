@@ -100,8 +100,9 @@
 			    renderer
 			]); 
 
+		   	var gravityY = 0.001;
 			var gravity = Physics.behavior('constant-acceleration', {
-			    acc: { x : 0, y: 0.0004 } // this is the default
+			    acc: { x : 0, y: gravityY } // this is the default
 			});
 			world.add( gravity );
   		
@@ -136,7 +137,7 @@
 		    		ballindex++;
 		    		createBall(left);
 
-		    		if(wheelArr.length >= 50) {
+		    		if(wheelArr.length >= 100) {
 		    			world.remove(wheelArr.shift());
 		    		}
 		    		lastTime = curTime;
@@ -161,7 +162,7 @@
 			        y: y,
 			        vx:  Math.random() * flag * 0.6, // velocity in x-direction
 			        angularVelocity: (Math.random() - 0.5) * 0.001,
-			        mass: 30,
+			        mass: 100,
 			        restitution: 0.6,
 			        radius: 8.5 
 			    });
@@ -182,10 +183,6 @@
 		    // start the ticker
 		    Physics.util.ticker.start();
 
-		 //    var swidth = screen.width;
-			// var sheight = swidth * 480 / 640 ;
-			// $('canvas').width(swidth).height(sheight);
-			// 
 			window.ondeviceorientation =  function(e) 
 			{
 			    var ang;
@@ -194,9 +191,9 @@
 			    ang = e.alpha;
 			    ang = Math.PI / 180 * ang;
 			    console.log(ang);
-			    var gx = 0.0004 * Math.sin(ang);
-			    var gy = 0.0004 * Math.cos(ang);
-			    gravity.setAcceleration({ x: gx, y: gy });
+			    var gx = gravityY * Math.sin(ang);
+			    var gy = gravityY * Math.cos(ang);
+			    gravity.setAcceleration({ x: -gx, y: gy });
 			     
 			}
 		    
