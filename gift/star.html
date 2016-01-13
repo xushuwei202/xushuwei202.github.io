@@ -84,7 +84,7 @@
 				        meta: false
 				    });
 		    
-		    		world.add( this.renderer );
+		    		world.add(this.renderer);
 		    		word.warp(this.options.warp);
 				}
 
@@ -110,6 +110,7 @@
 				}
 
 				Game.prototype.addEvent = function() {
+					var _this = this;
 				    var stepNo = 0;
 				    world.on('step', function(){
 				        ++stepNo;
@@ -123,12 +124,12 @@
 				            var pitch = Math.PI * event.beta / 180;
 				            var roll = Math.PI * event.gamma / 180;
 				            var acc = {
-				                x: Math.cos(pitch) * Math.sin(roll) * gravityY,
-				                y: Math.sin(pitch) * gravityY
+				                x: Math.cos(pitch) * Math.sin(roll) * _this.gravityVal,
+				                y: Math.sin(pitch) * _this.gravityVal
 				            };
 
 				            world.one('step', function () {
-				                gravity.setAcceleration(acc);
+				                _this.gravity.setAcceleration(acc);
 				            });
 				        };
 				    }
