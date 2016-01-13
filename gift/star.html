@@ -44,9 +44,11 @@
 	<script src="physicsjs-full.min.js"></script>
 
 	<script type="text/javascript">
+		
 		$(window).load(function(){
 			Physics(function(world){
 				var Game = function() {
+					var ua = navigator.userAgent;
 					var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
 				    var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
 				    var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
@@ -68,10 +70,16 @@
 					        starNum: 50
 					    };
 					}
+
+					this.init();
 				}
 
 				Game.prototype.init = function(){
-
+					this.initWord();
+					this.addBehavior();
+					this.createStarBody();
+					this.addEvent();
+					this.gameStart();
 				}
 
 				Game.prototype.initWord = function(){
@@ -85,7 +93,7 @@
 				    });
 		    
 		    		world.add(this.renderer);
-		    		word.warp(this.options.warp);
+		    		world.warp(this.options.warp);
 				}
 
 				Game.prototype.addBehavior = function() {
@@ -114,7 +122,7 @@
 				    var stepNo = 0;
 				    world.on('step', function(){
 				        ++stepNo;
-					    if (stepNo % this.options.renderSteps === 0) {
+					    if (stepNo % _this.options.renderSteps === 0) {
 					        world.render();
 					    }
 				    });	
@@ -164,7 +172,7 @@
 				        radius: 8.5 
 				    });
 
-				    star.view = renderer.createDisplay('sprite', {
+				    star.view = this.renderer.createDisplay('sprite', {
 					    texture: 'assets/star.png',
 					    anchor: {
 					        x: 0.5,
@@ -172,16 +180,45 @@
 					    }
 					});
 
-			   		wheelArr.push(star);
-				    world.add( myWheel );	
+			   		this.wheelArr.push(star);
+				    world.add( star );	
 				}
 
 				Game.prototype.gameStart = function() {
+					var _this = this;
+					var lastTime = new Date().getTime(),
+						curTime = lastTime,
+						ballindex = 0;
 
+					this.wheelArr = [];
+					Physics.util.ticker.on(function( time, dt ){
+						curTime = new Date().getTime();
+						if(curTime - lastTime >= 50) {
+							var left = false;
+							if(ballindex % 2 == 0) {
+								left =  true;
+							}
+
+							ballindex++;
+							_this.createStar(left);
+
+							if(_this.wheelArr.length >= _this.options.starNum) {
+								world.remove(_this.wheelArr.shift());
+							}
+							lastTime = curTime;
+						}
+					    world.step( time );
+					});
+
+		    		Physics.util.ticker.start();
 				}
+
+
+				new Game();
 			    
 			});
 		});
+	
 	</script>
 </head>
 <body>
