@@ -43,168 +43,145 @@
 	<script src="pixi.min.js"></script>
 	<script src="physicsjs-full.min.js"></script>
 
-
-	<script type="text/javascript">//<![CDATA[
+	<script type="text/javascript">
 		$(window).load(function(){
-		
-		Physics(function(world){
-
-			var ua = navigator.userAgent;
-			var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
-		    var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
-		    var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
-		    var iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
-
-		    var isWebView = (iphone || ipad || ipod) && ua.match(/.*AppleWebKit(?!.*Safari)/i);
-
-		    var options = {
-			    gravityFactor: 1,
-			    warp: 1,
-			    renderSteps: 1,
-			    ballNum : 100
-			};
-			if (isWebView || android) {
-			    options = {
-			        gravityFactor: 1,
-			        warp: 1,
-			        renderSteps: 1,
-			        ballNum: 50
-			    };
-			}
-
-		    var viewWidth = $(window).width();
-		    var viewHeight = $(window).height();
-		    var renderer = Physics.renderer('pixi', {
-		        el: 'viewport',
-		        width: viewWidth,
-		        height: viewHeight,
-		        meta: false
-		    });
+			Physics(function(world){
+				var Game = function() {
+					var android = ua.match(/(Android);?[\s\/]+([\d.]+)?/);
+				    var ipad = ua.match(/(iPad).*OS\s([\d_]+)/);
+				    var ipod = ua.match(/(iPod)(.*OS\s([\d_]+))?/);
+				    var iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
 		    
+		    		var isWebView = (iphone || ipad || ipod) && ua.match(/.*AppleWebKit(?!.*Safari)/i);
+				    this.options = {
+					    gravityFactor: 1,
+					    warp: 1,
+					    renderSteps: 1,
+					    starNum : 100
+					};
 
-		    world.add( renderer );
+					if (isWebView || android) {
+					    this.options = {
+					        gravityFactor: 2,
+					        warp: 1,
+					        renderSteps: 1,
+					        starNum: 50
+					    };
+					}
+				}
 
-		    var stepNo = 0;
-		    world.on('step', function(){
-		        ++stepNo;
-			    if (stepNo % options.renderSteps === 0) {
-			        world.render();
-			    }
-		    });
+				Game.prototype.init = function(){
+
+				}
+
+				Game.prototype.initWord = function(){
+					this.viewWidth = $(window).width();
+				    this.viewHeight = $(window).height();
+				    this.renderer = Physics.renderer('pixi', {
+				        el: 'viewport',
+				        width: this.viewWidth,
+				        height: this.viewHeight,
+				        meta: false
+				    });
 		    
+		    		world.add( this.renderer );
+		    		word.warp(this.options.warp);
+				}
 
-		    var viewportBounds = Physics.aabb(0, 0, viewWidth, viewHeight);
+				Game.prototype.addBehavior = function() {
+					    var viewportBounds = Physics.aabb(0, 0, this.viewWidth, this.viewHeight);
+					   	world.add([
+						    Physics.behavior('edge-collision-detection', {
+						    	aabb: viewportBounds,
+					        	restitution: 0.99,
+					        	cof: 0.99
+					        }),
+						    Physics.behavior('body-collision-detection',  { el: this.renderer.container }),
+						    Physics.behavior('body-impulse-response'),
+						    Physics.behavior('sweep-prune'),
+						    this.renderer
+						]);
 
-		   	world.add([
-			    Physics.behavior('edge-collision-detection', {
-			    	aabb: viewportBounds,
-		        	restitution: 0.99,
-		        	cof: 0.99
-		        }),
-			    Physics.behavior('body-collision-detection',  { el: renderer.container }),
-			    Physics.behavior('body-impulse-response'),
-			    Physics.behavior('sweep-prune'),
-			    renderer
-			]);
+					   	this.gravityVal = 0.0004;
+						this.gravity = Physics.behavior('constant-acceleration', {
+						    acc: { x : 0, y: this.gravityVal * this.options.gravityFactor }
+						});
+						world.add(this.gravity);	
+				}
 
-		   	var gravityY = 0.0004;
-			var gravity = Physics.behavior('constant-acceleration', {
-			    acc: { x : 0, y: gravityY * options.gravityFactor }
-			});
-			world.add( gravity );
+				Game.prototype.addEvent = function() {
+				    var stepNo = 0;
+				    world.on('step', function(){
+				        ++stepNo;
+					    if (stepNo % this.options.renderSteps === 0) {
+					        world.render();
+					    }
+				    });	
 
-			world.warp(options.warp);
+				    if (window.DeviceOrientationEvent) {
+				        window.ondeviceorientation = function (event) {
+				            var pitch = Math.PI * event.beta / 180;
+				            var roll = Math.PI * event.gamma / 180;
+				            var acc = {
+				                x: Math.cos(pitch) * Math.sin(roll) * gravityY,
+				                y: Math.sin(pitch) * gravityY
+				            };
 
-		    Physics.body('wheel', 'circle', function( parent ){
-		        return {
-		            spin: function( speed ){
-		                this.state.angular.vel = speed;
-		            }
-		        };
-		    });
-
-
-		    var lastTime = new Date().getTime(),
-		    	curTime = lastTime;
-		    var wheelArr = [];
-
-		    var ballindex = 0;
-		    Physics.util.ticker.on(function( time, dt ){
-		    	curTime = new Date().getTime();
-		    	if(curTime - lastTime >= 50) {
-		    		var left = false;
-		    		if(ballindex % 2 == 0) {
-		    			left =  true;
-		    		}
-
-		    		ballindex++;
-		    		createBall(left);
-
-		    		if(wheelArr.length >= options.ballNum) {
-		    			world.remove(wheelArr.shift());
-		    		}
-		    		lastTime = curTime;
-		    	}
-
-		        world.step( time );
-		    });
-
-		    function createBall (left) {
-		    	var myWheel = null;
-		    	var  x = 0;
-		    	var flag = 1;
-		    	if(!left) {
-		    		x = viewWidth;
-		    		flag = -1;
-		    	}
-
-		   		var  y = screen.height * 0.2;
-		   		myWheel = Physics.body('wheel', {
-			        x: x,
-			        y: y,
-			        vx:  Math.random() * flag * 0.4,
-			        mass: 50,
-			        restitution: 0.5,
-			        radius: 8.5 
-			    });
-
-			    myWheel.view = renderer.createDisplay('sprite', {
-				    texture: 'assets/star.png',
-				    anchor: {
-				        x: 0.5,
-				        y: 0.5
+				            world.one('step', function () {
+				                gravity.setAcceleration(acc);
+				            });
+				        };
 				    }
-				});
+				}
 
+				Game.prototype.createStarBody = function () {
+					Physics.body('wheel', 'circle', function( parent ){
+					    return {
+					        spin: function( speed ){
+					            this.state.angular.vel = speed;
+					        }
+					    };
+					});
+				}
 
-		   		wheelArr.push(myWheel);
-			    world.add( myWheel );
-		    }
-		    
+				Game.prototype.createStar = function(left) {
+			    	var star = null;
+			    	var  x = 0;
+			    	var flag = 1;
+			    	if(!left) {
+			    		x = this.viewWidth;
+			    		flag = -1;
+			    	}
 
-		    Physics.util.ticker.start();
-		    if (window.DeviceOrientationEvent) {
-		        window.ondeviceorientation = function (event) {
+			   		var  y = screen.height * 0.2;
+			   		star = Physics.body('wheel', {
+				        x: x,
+				        y: y,
+				        vx:  Math.random() * flag * 0.4,
+				        mass: 50,
+				        restitution: 0.5,
+				        radius: 8.5 
+				    });
 
-		            var pitch = Math.PI * event.beta / 180;
-		            var roll = Math.PI * event.gamma / 180;
+				    star.view = renderer.createDisplay('sprite', {
+					    texture: 'assets/star.png',
+					    anchor: {
+					        x: 0.5,
+					        y: 0.5
+					    }
+					});
 
-		            var acc = {
-		                x: Math.cos(pitch) * Math.sin(roll) * gravityY,
-		                y: Math.sin(pitch) * gravityY
-		            };
+			   		wheelArr.push(star);
+				    world.add( myWheel );	
+				}
 
-		            world.one('step', function () {
-		                gravity.setAcceleration(acc);
-		            });
-		        };
-		        
-		    }
-		    
+				Game.prototype.gameStart = function() {
+
+				}
+			    
+			});
 		});
-		});
-
-		</script>
+	</script>
 </head>
 <body>
 	<div id="viewport" style="text-align: center;"></div>
