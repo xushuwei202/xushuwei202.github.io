@@ -1,0 +1,143 @@
+ /**
+ * gobal全局样式 使用rem 自适应各个终端
+ */
+@charset "utf-8";
+/* =reset 网页样式重置
+ * ------------------------------------------------------------------------------------------------------------------------------*/
+html {
+	 font-size: 10px;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+    -webkit-tap-highlight:rgba(0,0,0,0);
+    -webkit-text-size-adjust:none;
+    overflow:-moz-scrollbars-vertical;
+}
+
+html,body{
+    height: 100%;
+}
+
+label { 
+    cursor:pointer;
+}
+a:link, a:visited { 
+    text-decoration:none;
+}
+input:focus {
+    outline: none; 
+}
+input,button,select,textarea{
+    outline:none;
+}
+
+textarea{
+    resize:none;
+}
+
+input:-webkit-autofill { 
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+textarea,input,select {
+    background: none;
+    border:none;
+    margin: 0;
+    padding: 0;
+}
+
+a, abbr, acronym, address, applet, article, aside, audio, b, blockquote, big, body, center, canvas, caption, cite, code, command, datalist, dd, del, details, dfn, dl, div, dt, em, embed, fieldset, figcaption, figure, font, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, keygen, label, legend, li, meter, nav, menu, object, ol, output, p, pre, progress, q, s, samp, section, small, span, source, strike, strong, sub, sup, table, tbody, tfoot, thead, th, tr, tdvideo, tt,
+u, ul, var {
+    margin:0;
+    padding:0;
+}
+
+/*html5设置*/
+article, aside, footer, header, hgroup, nav, section, figure, figcaption { 
+    display: block;
+} 
+h1, h2, h3, h4, h5, h6, th, td, table, input, button, select, textarea, sub{
+    font-size:1.2rem;
+}
+body, input, button, select, textarea, sub{ 
+    font-family:MICROSOFT YaHei,Helvetica,Tahoma,sans-serif;
+}
+em, cite, address, optgroup { 
+    font-style:normal;
+}
+kbd, samp, code { 
+    font-family:monospace;
+}
+
+img, input, button, select, textarea { 
+    vertical-align:middle;
+    outline:none;
+}
+ul, ol { 
+    list-style:none;
+}
+img, fieldset { 
+    border:0;
+}
+abbr, acronym { 
+    cursor:help; 
+    border-bottom:1px dotted black;
+}
+
+
+.clearfix{
+    zoom:1;
+}
+
+.clearfix:after {
+    content: " ";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    clear: both;
+}
+
+
+
+#DDS_videoPlayer {
+	background: #000;
+}
+
+#DDS_videoPlayer video{
+	width: 100%;
+	height: 100%;
+}
+
+
+
+
+
+a { color: #ffffe0;}
+
+table { border: none; margin: auto; margin-top: 1ex; width: 100%;}
+th {  text-align: left; word-break:break-all; word-wrap:break-word; background: #D4CDC9;}
+caption { background-color: #ffffe0; color: black; font-weight: bold;}
+thead th {  background-color: #ffffe0; color: black;}
+td { word-break:break-all; word-wrap:break-word;}
+#events td { text-align: left; width: 4ex;  word-break:break-all; word-wrap:break-word;}
+#properties td { }
+hr { clear: both; margin-top: 2em;}
+.true { background-color: #360; color: #ffffe0; }
+.false { background-color: #603; color: #ffffe0; }
+#buttons { text-align: center; }
+
+#m_video td, #m_video th, #tracks td, #tracks tth { text-align: center; padding-left: 0.5ex; padding-right: 0.5ex;}
+
+
+#buttons button {
+    float: left;
+    margin-bottom: 10px;
+}
+
+.room-unit {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+#room-id {
+    border: 1px solid #ccc;
+}

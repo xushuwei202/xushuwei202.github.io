@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="apple-touch-fullscreen" content="yes" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="apple-mobile-web-app-title" content="来疯">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>在线视频测试</title>
+	
+	<link href="video.css" rel="stylesheet" type="text/css">
+	<script src="zepto.min.js"></script>
+</head>
+<body>
+	<div class="page-content">
+		 <div id="DDS_videoPlayer" class="player">
+
+		 </div>
+		
+		 <section class="video-control">
+		 	<div id="room">
+		 		<div class="room-unit">
+		 			<span>roomid:</span> <input id="room-id" value="55010"/> <button onclick="video.loadData();">go</button>
+		 		</div>
+		 	</div>
+ 		    <div id='buttons'>
+ 		    	<section class="clearfix">
+ 		    		<button onclick="getController().load()">load()</button>
+	 		      	<button onclick="getController().play()">play()</button>
+	 		      	<button onclick="getController().pause()">pause()</button><br>
+ 		    	</section>
+				<section class="clearfix">
+					<button onclick="getController().currentTime+=10">currentTime+=10</button>
+					<button onclick="getController().currentTime-=10">currentTime-=10</button>
+					<button onclick="getController().currentTime=50">currentTime=50</button><br>
+					<button onclick="getController().playbackRate++">playbackRate++</button>
+					<button onclick="getController().playbackRate--">playbackRate--</button>
+					<button onclick="getController().playbackRate+=0.1">playbackRate+=0.1</button>
+					<button onclick="getController().playbackRate-=0.1">playbackRate-=0.1</button><br>
+					<button onclick="getController().volume+=0.1">volume+=0.1</button>
+					<button onclick="getController().volume-=0.1">volume-=0.1</button>
+					<button onclick="getController().muted=true">muted=true</button>
+					<button onclick="getController().muted=false">muted=false</button><br>
+				</section>
+
+ 		    </div>
+
+ 		    <table>
+ 		      <caption>Media Events</caption>
+ 		      <tbody id='events'>
+ 		      </tbody>
+ 		    </table>
+ 		    <table>
+ 		      <caption>Media Properties</caption>
+ 		      <tbody id='properties'>
+ 		      </tbody>
+ 		    </table>
+
+ 		    <table>
+ 		      <caption>MediaController Events</caption>
+ 		      <tbody id='mc_events'>
+ 		      </tbody>
+ 		    </table>
+ 		    <table>
+ 		      <caption>MediaController Properties</caption>
+ 		      <tbody id='mc_properties'>
+ 		      </tbody>
+ 		    </table>
+
+
+ 		    <table id='canPlayType'>
+ 		      <caption>canPlayType</caption>
+ 		      <tbody id='m_video'>
+ 		      </tbody>
+ 		    </table>
+
+ 		    <table id='tracks'>
+ 		      <caption>Tracks</caption>
+ 		      <tbody>
+ 			<tr>
+ 			  <th>Audio</th>
+ 			  <th>Video</th>
+ 			  <th>Text</th>
+ 			</tr>
+ 			<tr>
+ 			  <td id='m_audiotracks' class='false'>?</td>
+ 			  <td id='m_videotracks' class='false'>?</td>
+ 			  <td id='m_texttracks' class='false'>?</td>
+ 			</tr>
+ 		      </tbody>
+ 		    </table>
+		 </section>
+	</div>
+
+
+	<script src="video.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>
