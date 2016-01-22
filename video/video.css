@@ -108,7 +108,9 @@ abbr, acronym {
 }
 
 
-
+body {
+    max-width: 640px;
+}
 
 
 a { color: #ffffe0;}
