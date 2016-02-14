@@ -1,0 +1,308 @@
+<!doctype html>
+<html>
+<head>
+    <title>VW Beetle</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="og:title" content="VW Beetle" />
+	<meta name="og:description" content="See the car configurator site like no other!" />
+	<link rel="og:image" href="http://www.bugconfigurator.com/img/share.jpg" />
+
+
+	<meta name="twitter:card" content="photo" />
+	<meta name="twitter:site" content="@VWBeetle" />
+	<meta name="twitter:title" content="VW Beetle" />
+	<meta name="twitter:description" content="See the car configurator site like no other!" />
+	<meta name="twitter:image" content="http://www.bugconfigurator.com/img/share.jpg" />
+	<meta name="twitter:url" content="http://www.bugconfigurator.com/" />
+
+
+    <!-- Loading Bootstrap -->
+    <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/vendor/html5shiv.js"></script>
+      <script src="js/vendor/respond.min.js"></script>
+    <![endif]-->
+
+    <script>var currentLanguage = "en";var useTM =false;var useGLVideo =true;</script>
+</head>
+<body>
+	<div style="display:none">
+		<img src="img/share.jpg" alt="">
+	</div>
+
+		<div id="canvas"></div>
+	<section id="home"    class="section">
+		<div class="container">
+			<div class="row">
+				<div class="intro p-beetle col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3 text-center">Take a bug's eye view <br>of three feature-packed options.</div>
+				<div class="hero col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3 text-center">
+					<img src="assets/images/hero.png" alt="">
+				</div>
+				<div id="start-btn" class="over-btn">start</div>
+				<div id="lan-choose">
+					<div id="lan-choose-en"></div>
+					<div id="lan-choose-seg"></div>
+					<div id="lan-choose-cn"></div>
+				</div>
+			</div>
+		</div><!-- end of container -->
+	</section>
+	
+	<section id="power"   class="section">
+		<div class="container">
+			<div class="row">
+				<div class="title col-xs-12 text-center"><h2>Choose an engine</h2></div>
+				<div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+					<div class="text-center col-xs-4"><div id="power-btn-1" class="circle-btn"></div></div>
+					<div class="text-center col-xs-4"><div id="power-btn-2" class="circle-btn"></div></div>
+					<div class="text-center col-xs-4"><div id="power-btn-3" class="circle-btn"></div></div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+
+	<section id="package"   class="section">
+		<div class="container">
+			<div class="row">
+				<div class="title col-xs-12 text-center"><h2>Choose a package</h2></div>
+				<div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+					<div class="text-center col-xs-4"><div id="package-btn-1" class="circle-btn over-btn"></div></div>
+					<div class="text-center col-xs-4"><div id="package-btn-2" class="circle-btn over-btn"></div></div>
+					<div class="text-center col-xs-4"><div id="package-btn-3" class="circle-btn over-btn"></div></div>
+				</div>
+				<div id="package-back-btn" class="btn-beetle over-btn-2">back</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="color"   class="section">
+		<div class="container">
+			<div class="row">
+				<div class="title col-xs-12 text-center"><h2>Choose a color</h2></div>
+				<div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+					<div class="text-center col-xs-4"><div id="color-btn-1" class="circle-btn color-btn over-btn"></div></div>
+					<div class="text-center col-xs-4"><div id="color-btn-2" class="circle-btn color-btn over-btn"></div></div>
+					<div class="text-center col-xs-4"><div id="color-btn-3" class="circle-btn color-btn over-btn"></div></div>
+				</div>
+
+				<div id="color-back-btn" class="btn-beetle over-btn-2">back</div>
+				<div id="color-share-btn" class="btn-beetle over-btn-2">share</div>
+				<div id="color-restart-btn" class="btn-beetle over-btn-2">restart</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="share"   class="section">
+		<div class="container">
+			<div class="row">
+				<div class="title col-xs-12 text-center"><h2>Share with one of your accounts</h2></div>
+				<div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+					<div class="text-center col-xs-3"><div id="share-btn-1" class="circle-btn over-btn"></div></div>
+					<div class="text-center col-xs-3"><div id="share-btn-2" class="circle-btn over-btn"></div></div>
+					<div class="text-center col-xs-3"><div id="share-btn-3" class="circle-btn over-btn"></div></div>
+					<div class="text-center col-xs-3"><div id="share-btn-4" class="circle-btn over-btn"></div></div>
+				</div>
+				<div id="share-back-btn" class="btn-beetle over-btn-2">back</div>
+				<div id="share-restart-btn" class="btn-beetle over-btn-2">restart</div>
+
+			</div>
+		</div>
+	</section>
+
+	
+	<div     id="nav">
+		<div              class="logo"><img src="assets/images/logo.png" width="60" alt=""></div>
+		<div class="language text-right"></div>
+		<div class="mute text-right"></div>
+		<div class="shares">
+			<div class="share-icons">
+				<div ><div id="nav-share-btn-1" class="nav-share-btn"></div></div>
+				<div ><div id="nav-share-btn-2" class="nav-share-btn"></div></div>
+				<div ><div id="nav-share-btn-3" class="nav-share-btn"></div></div>
+				<div ><div id="nav-share-btn-4" class="nav-share-btn"></div></div>
+			</div>
+			<div class="share-icon"><img src="assets/images/share.png" alt="share" width="30"></div>
+		</div>
+		<div class="test-drive-icon over-btn-2 text-center">
+			Test Drive
+		</div>
+	</div>
+
+
+	<div id="popup">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 img-left">
+					<div id="popup-c" class="image"></div>
+				</div>
+				<div class="col-xs-6 text-left contentwrapper">
+					<div id="popup-r" class="content">
+						<h2 id="popup-h"></h2>
+						<div class="hr"></div>
+						<p id="popup-p"></p>
+						<div class="close-popup over-btn-2"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="wechat">
+		<div class="close-wechat over-btn-2"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="col-xs-6 col-xs-offset-3">
+						<img src="img/qrcode.png" alt="">
+					</div>
+				</div>
+				<div class="col-xs-12">
+					<div class="col-xs-6 col-xs-offset-3 text-center">
+						<p>Scan this QR code for WeChat</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="Reserve_box">
+		<div class="close-box over-btn-2"></div>
+		<div id="reserve-hint" class="text-center">The test drive page has only been created in Chinese.</div>
+		<div class="reserve_container">
+			<div class="reserve_inner">
+			    <div id="reserve-content" class="Reserve_box_content">
+			    	<div id="reserve-title" class="title"><img src="assets/images/test-drive-title.png" alt=""></div>
+			        <dl>
+
+			            <dd>
+			                <input class="over-btn-2" name="username" type="text" value="" onBlur="username_blur(this.value)" placeholder="请填写您的姓名">
+			            </dd>
+			            <dd>
+			                <select class="over-btn-2" name="gender">
+			                    <option>先生</option>
+			                    <option>女士</option>
+			                </select>
+			            </dd>
+
+			            <dd class="none">
+			                <input class="over-btn-2" name="mobile" type="text" value="" onBlur="mobile_blur(this.value)" placeholder="请填写您的手机号">
+			            </dd>
+			            <dd class="none">
+			                <input class="over-btn-2" name="email" type="text" value="" onBlur="email_blur(this.value)" placeholder="请填写您的电子邮箱">
+			            </dd>
+			            <dd>
+			                <select class="over-btn-2" name="dealerprovince" id="dealerprovince" onChange="dealerprovince_change(this.value)">
+			                    <!--省份-->
+			                    <option>省份</option>
+			                </select>
+			            </dd>
+			            <dd>
+			                <select class="over-btn-2" name="dealercity" id="dealercity" onChange="dealercity_change(this.value)">
+			                    <!--城市-->
+			                    <option>城市</option>
+			                </select>
+			            </dd>
+			            <dd>
+			                <select class="over-btn-2" name="dealer" id="dealer" onChange="dealer_change(this.value)">
+			                                                <option>请选择</option>
+			                </select>
+			            </dd>
+			            <dd>
+			                <select class="over-btn-2" name="Series" id="Series">
+			                    <!--车型-->
+			                    <option value="-1">请选择试驾的车型</option>
+			                    <option value="124">甲壳虫</option>
+			                </select>
+			            </dd>
+			            <dd>
+			                <select class="over-btn-2" name="buytime"  id="buytime"  onChange="buytime_change(this.value)">
+			                    <!--预计购车时间-->
+			                   <option value="-1">预计购车时间</option>
+			                    <option value="3个月内">3个月内</option>
+			                    <option value="4-6个月">4-6个月</option>
+			                    <option value="7-12个月">7-12个月</option>
+			                    <option value="一年以上">一年以上</option>
+			                    <option value="暂不考虑">暂不考虑</option>
+			                </select>
+			            </dd>
+			            <dd>
+			                <select class="over-btn-2" name="buybudget" id="buybudget" onChange="buybudget_change(this.value)">
+			                    <option value="-1">预计购车预算</option>
+			                    <option value="小于 20万">小于 20万</option>
+			                    <option value="20万-30万">20万-30万</option>
+			                    <option value="30万-40万">30万-40万</option>
+			                    <option value="40万-50万">40万-50万</option>
+			                    <option value="50万-60万">50万-60万</option>
+			                    <option value="60万-70万">60万-70万</option>
+			                    <option value="70万-80万">70万-80万</option>
+			                    <option value="80万-90万">80万-90万</option>
+			                    <option value="90万-100万">90万-100万</option>
+			                    <option value="100-110万">100-110万</option>
+			                    <option value="110-120万">110-120万</option>
+			                    <option value="120-130万">120-130万</option>
+			                    <option value="130-140万">130-140万</option>
+			                    <option value="140-150万">140-150万</option>
+			                    <option value="150万以上">150万以上</option>
+			                </select>
+			            </dd>
+			        </dl>
+
+			        <div class="term">
+				    	<h2>数据保护条款</h2>
+						<div class="hr"></div>
+						<ol>
+							<li>大众进口汽车销售有限公司保证所有个人信息数据都将按照隐私保护规定进行处理。</li>
+							<li>用户通过本网站提交的任何个人信息，将用于本次试驾活动的申请和接收来自大众进口汽车提供的产品、服务、活动等信息。我们会通过电子邮件、电话或邮寄的方式向您提供相关信息，或联合其他经过严格筛选的经销商向您提供您所感兴趣的咨询，或邀请您参加我们的市场活动和客户调查。</li>
+			  				<li>以上个人信息数据可由大众进口汽车销售有限公司及其授权经销商共同持有，并可由大众进口汽车销售有限公司及其授权经销商由于其正常的商业活动，包括但不限于根据本人所提供的信息以及与本人联系。</li>
+			  				<li>除上述情况，在得到您的许可的情况下，以上信息数据将被保留和进行相应处理，除此以外不会向第三方披露。</li>
+			  				<li>5.在不限制您依法享有的权利的前提下，大众进口汽车销售有限公司保留随时修改或撤销本保密政策部分或全部的权利以及最终解释权。</li>
+						</ol>
+				    </div>
+			    </div>
+
+			    <div class="copyright">
+		      		<input type="checkbox" id="c1" name="cc" checked/>
+					<label class="over-btn-2" for="c1"><span class="cbox"></span>我同意接受并遵守<a href="#"  class="term-btn" onclick="return false">数据保护条款</a>规定</label>
+				</div>
+		        
+		        <div class="botton">
+		            <div id="reservebox-submit" class="btn-beetle over-btn-2">提交</div>
+		        </div>
+	        </div>
+	    </div>
+	</div> 
+
+	<div id="loading">
+		<div class="loading-text"></div>
+		<div class="loading-bg"></div>
+	</div>
+
+	<div class="audios">
+		<audio src="assets/audio/bg.mp3" preload repeat id="audio-bg"></audio>
+		<audio src="assets/audio/feature.mp3" preload repeat id="audio-feature"></audio>
+		<audio src="assets/audio/over7.mp3" preload id="audio-over"></audio>
+	</div>
+
+	<script src="js/pixi2.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/gsap/TweenMax.min.js"></script>
+	<script src="js/gsap/TimelineMax.min.js"></script>
+	<script src="js/flat-ui.min.js"></script>
+
+	<script type="text/javascript" src="js/vendor/jquery.cookie.js"></script>
+    <script type="application/javascript" src="js/vendor/jquery.mmenu.min.js"></script>
+    <script type="application/javascript" src="js/vendor/a/jquery.control.js"></script>
+    <script type="application/javascript" src="js/vendor/jquery.control.js"></script>
+    <script type="text/javascript" src="js/vendor/jquery.provincesCity.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

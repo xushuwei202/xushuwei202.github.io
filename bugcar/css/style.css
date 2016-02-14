@@ -1,0 +1,837 @@
+@font-face {
+  font-family: 'VWHeadline-Bk';
+  src: url("http://cdn.bugconfigurator.com/fonts/vw/VWHeadline-Bk.woff") format('woff');
+}
+@font-face {
+  font-family: 'VWHeadline-Sb';
+  src: url("http://cdn.bugconfigurator.com/fonts/vw/VWHeadline-Sb.woff") format('woff');
+}
+#bgvid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+#canvas {
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.circle-btn {
+  cursor: pointer;
+  display: block;
+  background-repeat: no-repaet;
+  background-position: left top;
+}
+.circle-btn:hover {
+  background-position: left bottom;
+}
+.nav-share-btn {
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+body {
+  background-color: black;
+  color: #ffffff;
+  overflow: hidden;
+  font-family: 'VWHeadline-Bk';
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -webkit-overflow-scrolling: touch;
+  letter-spacing: 0px;
+  line-height: 120%;
+}
+.section {
+  visibility: hidden;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.section .container {
+  display: table;
+  height: 100%;
+}
+.section .container .row {
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  padding-bottom: 25%;
+}
+#nav {
+  visibility: hidden;
+}
+#nav .logo {
+  position: fixed;
+  left: 40px;
+  top: 40px;
+  cursor: pointer;
+}
+#nav .mute {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  top: 35px;
+  right: 395px;
+  cursor: pointer;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/mute.svg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% 200%;
+}
+#nav .mute:hover {
+  opacity: 0.6;
+}
+#nav .language {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  top: 35px;
+  right: 345px;
+  cursor: pointer;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/language.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+#nav .language:hover {
+  opacity: 0.6;
+}
+#nav .shares {
+  position: fixed;
+  width: 220px;
+  height: 40px;
+  top: 35px;
+  right: 110px;
+  display: block;
+  overflow: hidden;
+}
+#nav .shares .share-icons {
+  position: absolute;
+  display: block;
+  width: 180px;
+  left: 0px;
+  height: 40px;
+  overflow: hidden;
+}
+#nav .shares .share-icons #nav-share-btn-1 {
+  display: block;
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  float: left;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/share1-small.png");
+}
+#nav .shares .share-icons #nav-share-btn-1:hover {
+  opacity: 0.6;
+}
+#nav .shares .share-icons #nav-share-btn-2 {
+  display: block;
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  float: left;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/share2-small.png");
+}
+#nav .shares .share-icons #nav-share-btn-2:hover {
+  opacity: 0.6;
+}
+#nav .shares .share-icons #nav-share-btn-3 {
+  display: block;
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  float: left;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/share3-small.png");
+}
+#nav .shares .share-icons #nav-share-btn-3:hover {
+  opacity: 0.6;
+}
+#nav .shares .share-icons #nav-share-btn-4 {
+  display: block;
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  float: left;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/share4-small.png");
+}
+#nav .shares .share-icons #nav-share-btn-4:hover {
+  opacity: 0.6;
+}
+#nav .share-icon {
+  margin: 5px;
+  float: right;
+  cursor: pointer;
+}
+#nav .share-icon:hover {
+  opacity: 0.6;
+}
+#nav .test-drive-icon {
+  position: fixed;
+  top: 42px;
+  right: 40px;
+  height: 29px;
+  min-width: 50px;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  padding-top: 12px;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/testdrive.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#home .intro {
+  padding-top: 30px;
+}
+#home .hero {
+  padding-top: 30px;
+}
+#home .hero img {
+  max-width: 100%;
+}
+#home #start-btn {
+  position: fixed;
+  left: 50%;
+  border: 3px solid white;
+  cursor: pointer;
+  margin-top: -16px;
+  margin-left: -67.5px;
+  font-family: 'VWHeadline-Sb';
+  text-align: center;
+  width: 135px;
+  height: 32px;
+  font-size: 18px;
+  display: block;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+#home #start-btn:hover {
+  opacity: 1;
+  background-color: white;
+  color: gray;
+}
+#home #lan-choose {
+  position: fixed;
+  display: block;
+  width: 77px;
+  height: 14px;
+  left: 50%;
+  cursor: pointer;
+  margin-bottom: -40px;
+  margin-left: -39px;
+}
+#home #lan-choose-en {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 11px;
+  left: 0px;
+  top: 1px;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/lanen.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+#home #lan-choose-seg {
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 14px;
+  left: 36px;
+  top: 0px;
+  background: white;
+}
+#home #lan-choose-cn {
+  position: absolute;
+  display: block;
+  width: 25px;
+  height: 14px;
+  right: 0px;
+  top: 0px;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/lancn.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+#power .title {
+  padding-bottom: 30px;
+}
+#power #power-btn-1 {
+  width: 160px;
+  height: 160px;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/power1.png");
+  margin: 0 auto;
+}
+#power #power-btn-2 {
+  width: 160px;
+  height: 160px;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/power2.png");
+  margin: 0 auto;
+}
+#power #power-btn-3 {
+  width: 160px;
+  height: 160px;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/power3.png");
+  margin: 0 auto;
+}
+#package .title {
+  padding-bottom: 30px;
+}
+#package #package-back-btn {
+  position: fixed;
+  left: 50%;
+  border: 3px solid white;
+  cursor: pointer;
+  margin-top: -16px;
+  margin-left: -67.5px;
+}
+#package #package-btn-1 {
+  width: 160px;
+  height: 160px;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/package1.png");
+  margin: 0 auto;
+}
+#package #package-btn-2 {
+  width: 160px;
+  height: 160px;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/package2.png");
+  margin: 0 auto;
+}
+#package #package-btn-3 {
+  width: 160px;
+  height: 160px;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/package3.png");
+  margin: 0 auto;
+}
+#color .title {
+  padding-bottom: 30px;
+}
+#color .color-btn {
+  display: block;
+  width: 78px;
+  height: 78px;
+  background-size: 100% 200%;
+  position: relative;
+  margin: 0 auto;
+  cursor: pointer;
+  background-repeat: no-repaet;
+  background-position: center top;
+}
+#color .color-btn:hover {
+  background-position: center bottom;
+}
+#color #color-btn-1 {
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/color1.png");
+}
+#color #color-btn-2 {
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/color2.png");
+}
+#color #color-btn-3 {
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/color3.png");
+}
+#color #color-back-btn {
+  position: fixed;
+  left: 50%;
+  border: 3px solid white;
+  cursor: pointer;
+  margin-top: -16px;
+  margin-left: -222.5px;
+}
+#color #color-share-btn {
+  position: fixed;
+  left: 50%;
+  border: 3px solid white;
+  cursor: pointer;
+  margin-top: -16px;
+  margin-left: -67.5px;
+}
+#color #color-restart-btn {
+  position: fixed;
+  left: 50%;
+  border: 3px solid white;
+  cursor: pointer;
+  margin-top: -16px;
+  margin-left: 87.5px;
+}
+#share .title {
+  padding-bottom: 30px;
+}
+#share #share-btn-1 {
+  display: block;
+  width: 78px;
+  height: 78px;
+  background-size: 100% 200%;
+  position: relative;
+  margin: 0 auto;
+  cursor: pointer;
+  background-repeat: no-repaet;
+  background-position: center top;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/share1.png");
+}
+#share #share-btn-1:hover {
+  background-position: center bottom;
+}
+#share #share-btn-2 {
+  display: block;
+  width: 78px;
+  height: 78px;
+  background-size: 100% 200%;
+  position: relative;
+  margin: 0 auto;
+  cursor: pointer;
+  background-repeat: no-repaet;
+  background-position: center top;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/share2.png");
+}
+#share #share-btn-2:hover {
+  background-position: center bottom;
+}
+#share #share-btn-3 {
+  display: block;
+  width: 78px;
+  height: 78px;
+  background-size: 100% 200%;
+  position: relative;
+  margin: 0 auto;
+  cursor: pointer;
+  background-repeat: no-repaet;
+  background-position: center top;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/share3.png");
+}
+#share #share-btn-3:hover {
+  background-position: center bottom;
+}
+#share #share-btn-4 {
+  display: block;
+  width: 78px;
+  height: 78px;
+  background-size: 100% 200%;
+  position: relative;
+  margin: 0 auto;
+  cursor: pointer;
+  background-repeat: no-repaet;
+  background-position: center top;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/share4.png");
+}
+#share #share-btn-4:hover {
+  background-position: center bottom;
+}
+#share #share-back-btn {
+  position: fixed;
+  left: 50%;
+  border: 3px solid white;
+  cursor: pointer;
+  margin-top: -16px;
+  margin-left: -145px;
+}
+#share #share-restart-btn {
+  position: fixed;
+  left: 50%;
+  border: 3px solid white;
+  cursor: pointer;
+  margin-top: -16px;
+  margin-left: 10;
+}
+#wechat {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+#wechat .container {
+  display: table;
+  height: 100%;
+  padding: 80px;
+}
+#wechat .container .row {
+  display: table-cell;
+  vertical-align: middle;
+  height: 100%;
+}
+#wechat .container .row img {
+  display: block;
+  width: 260px;
+  height: 260px;
+  margin: 0 auto;
+}
+#wechat .container .row p {
+  padding-top: 30px;
+}
+#wechat .close-wechat {
+  cursor: pointer;
+  display: block;
+  background-repeat: no-repaet;
+  background-position: left top;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  background-size: 50px 100px;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/close.png");
+}
+#wechat .close-wechat:hover {
+  background-position: left bottom;
+}
+#popup {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+#popup .container {
+  display: table;
+  height: 100%;
+  padding: 80px;
+}
+#popup .container .row {
+  display: table-cell;
+  vertical-align: middle;
+  height: 100%;
+}
+#popup .container .row .img-left {
+  height: 100%;
+  display: block;
+}
+#popup .container .row .img-left .image {
+  display: block;
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: 50%;
+  margin-top: -250px;
+  right: 0;
+  background-repeat: no-repeat;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+#popup .container .row .contentwrapper {
+  height: 100%;
+  display: table;
+}
+#popup .container .row .contentwrapper .content {
+  padding-left: 10%;
+  padding-right: 20%;
+  display: table-cell;
+  vertical-align: middle;
+}
+#popup .container .row .contentwrapper .content p {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  line-height: 22px;
+}
+#popup .container .row .contentwrapper .content .close-popup {
+  cursor: pointer;
+  display: block;
+  background-repeat: no-repaet;
+  background-position: left top;
+  margin: 0;
+  width: 50px;
+  height: 50px;
+  background-size: 50px 100px;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/close.png");
+}
+#popup .container .row .contentwrapper .content .close-popup:hover {
+  background-position: left bottom;
+}
+h2 {
+  font-family: 'VWHeadline-Sb';
+  font-size: 28px;
+  letter-spacing: -1px;
+}
+.btn-beetle {
+  font-family: 'VWHeadline-Sb';
+  text-align: center;
+  width: 135px;
+  height: 32px;
+  font-size: 18px;
+  display: block;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+.btn-beetle:hover {
+  background-color: white;
+  color: gray;
+}
+#Reserve_box {
+  background-color: rgba(0, 0, 0, 0.7);
+  visibility: hidden;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+#Reserve_box .close-box {
+  cursor: pointer;
+  display: block;
+  background-repeat: no-repaet;
+  background-position: left top;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  background-size: 50px 100px;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/close.png");
+}
+#Reserve_box .close-box:hover {
+  background-position: left bottom;
+}
+#Reserve_box .reserve_container {
+  width: 500px;
+  height: 100%;
+  display: table;
+  margin: 0 auto;
+}
+#Reserve_box .reserve_container .reserve_inner {
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+#Reserve_box .reserve_container .reserve_inner .Reserve_box_content {
+  overflow: hidden;
+  font-size: 18px;
+  width: 500px;
+  display: block;
+  margin: 0 auto;
+  height: 470px;
+}
+#Reserve_box .reserve_container .reserve_inner .Reserve_box_content .title {
+  width: 100%;
+  display: block;
+  margin-bottom: 60px;
+}
+#Reserve_box .reserve_container .reserve_inner .Reserve_box_content .title img {
+  display: block;
+  margin: 0 auto;
+}
+#Reserve_box .reserve_container .reserve_inner .Reserve_box_content dl {
+  width: 480px;
+  margin-left: 10px;
+}
+#Reserve_box .reserve_container .reserve_inner .Reserve_box_content dl dd {
+  float: left;
+  width: 240px;
+  height: 50px;
+  color: black;
+}
+#Reserve_box .reserve_container .reserve_inner .Reserve_box_content dl dd input {
+  font-size: 16px;
+  width: 221px;
+  height: 32px;
+  border: 2px solid #fff;
+  background-color: transparent;
+  color: white;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-left: 15px;
+  margin-left: 5px;
+}
+#Reserve_box .reserve_container .reserve_inner .Reserve_box_content dl dd input:hover {
+  background-color: white;
+  color: black;
+}
+#Reserve_box .reserve_container .reserve_inner .Reserve_box_content dl dd select {
+  font-size: 16px;
+  width: 221px;
+  height: 32px;
+  border: 2px solid #fff;
+  background-color: transparent;
+  color: white;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  display: inline-block;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-left: 15px;
+  margin-left: 5px;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/down-arrow.png");
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+#Reserve_box .reserve_container .reserve_inner .Reserve_box_content dl dd select:hover {
+  background-color: white;
+  color: black;
+}
+#Reserve_box .reserve_container .reserve_inner .Reserve_box_content .term {
+  font-size: 14px;
+  display: block;
+  width: 500px;
+  height: 1000px;
+  padding-top: 300px;
+}
+#Reserve_box .reserve_container .reserve_inner .Reserve_box_content .term .hr {
+  margin: 20px 0;
+}
+#Reserve_box .reserve_container .reserve_inner .Reserve_box_content .term ol {
+  margin-left: 20px;
+  padding: 0;
+}
+#Reserve_box .reserve_container .copyright {
+  clear: both;
+  margin-left: 15px;
+  font-size: 14px;
+}
+#Reserve_box .reserve_container .copyright label a {
+  color: white;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-decoration: underline;
+}
+#Reserve_box .reserve_container .botton .btn-beetle {
+  left: 50%;
+  margin: 0 auto;
+  margin-top: 20px;
+  border: 3px solid white;
+  cursor: pointer;
+}
+#reserve-hint {
+  width: 100%;
+  top: 50%;
+  position: absolute;
+  display: block;
+  text-align: center;
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+#loading {
+  position: fixed;
+  width: 87px;
+  height: 87px;
+  display: block;
+  left: 50%;
+  margin-top: -31px;
+  margin-left: -31px;
+  bottom: 13%;
+}
+#loading .loading-text {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/loadingtext.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 80% 80%;
+}
+#loading .loading-bg {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/loading.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  -webkit-animation: load 2s linear infinite both;
+  -moz-animation: load 2s linear infinite both;
+  animation: load 2s linear infinite both;
+}
+@-webkit-keyframes load {
+  0% {
+    -webkit-transform: rotate(360deg);
+  }
+  100% {
+    -webkit-transform: rotate(0);
+  }
+}
+@-moz-keyframes load {
+  0% {
+    -moz-transform: rotate(360deg);
+  }
+  100% {
+    -moz-transform: rotate(0);
+  }
+}
+@keyframes load {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+.hr {
+  width: 56px;
+  height: 2px;
+  display: block;
+  background-color: white;
+}
+.tooltip-inner {
+  background-color: black;
+}
+input[type="checkbox"] {
+  display: none;
+}
+input[type="checkbox"] + label span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: -1px 4px 0 0;
+  margin-right: 10px;
+  vertical-align: middle;
+  background-image: url("http://cdn.bugconfigurator.com/assets/images/checkbox.png");
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked + label span {
+  background-position: left top;
+}
+.blur {
+  filter: url(blur.svg#blur);
+  /* FireFox, Chrome, Opera */
+  -webkit-filter: blur(10px);
+  /* Chrome, Opera */
+  -moz-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false);
+  /* IE6~IE9 */
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.audios {
+  display: none;
+}
