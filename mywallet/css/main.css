@@ -1,0 +1,92 @@
+@charset "utf-8";
+/* reset */
+html, body {
+	font-family: 'Arial Black', 'Microsoft YaHei', '微软雅黑', 'Arial', 'Tahoma', 'Verdana';
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	overflow: hidden;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	background: #000000;
+}
+ul, li {
+	display: block;
+	list-style: none;
+}
+
+p {
+	display: block;
+}
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+em {
+	font-style: normal;
+}
+
+button {
+	font-family: Tahoma, Verdana, Arial;
+	font-weight: normal;
+}
+a, button, input, img {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+:focus {
+	outline: 0;
+}
+/* common */
+.clearfix {
+	zoom: 1
+}
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+.none {
+	display: none;
+}
+/* visibility:hidden;虽然不显示但仍占据位置，但是也不能响应事件   display:none;不占据位置 */
+.hidden {
+	visibility: hidden;
+}
+.pter {
+	cursor: pointer;
+}
+.htxt {
+	text-indent: -9999px;
+}
+.bold_txt {
+	font-weight:bold;
+}
+/* ios设备平滑滚动 */
+.smooth_slide {
+	-webkit-overflow-scrolling: touch;
+}
+/* baidu */
+
+#landscape{
+	position: absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background: url('../img/landscape.jpg');
+	background-size: cover;
+	background-position: 50% 50%;
+	display: none;
+	z-index: 99999;
+}
+
+#main {
+	position: absolute;
+	top:0;
+	left:0;
+}
