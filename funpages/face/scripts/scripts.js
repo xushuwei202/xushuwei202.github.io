@@ -11,14 +11,14 @@ function html5glasses() {
 
 	ctx.drawImage(video, 0, 0, video.width, video.height, 0, 0, canvas.width, canvas.height);
 
-	// var comp = ccv.detect_objects({ "canvas" : (ccv.pre(canvas)),
-	// 								"cascade" : cascade,
-	// 								"interval" : 5,
-	// 								"min_neighbors" : 1 });
+	var comp = ccv.detect_objects({ "canvas" : (ccv.pre(canvas)),
+									"cascade" : cascade,
+									"interval" : 5,
+									"min_neighbors" : 1 });
 
 
 	// for (var i = 0; i < comp.length; i++) {
-	// 	ctx.drawImage(glasses, comp[i].x, comp[i].y,comp[i].width, comp[i].height);
+		ctx.drawImage(glasses, comp[0].x, comp[0].y,comp[0].width, comp[0].height);
 	// }
 }
 
