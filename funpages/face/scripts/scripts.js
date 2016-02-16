@@ -23,8 +23,9 @@ function html5glasses() {
 }
 
 
+
 video.addEventListener('play', function() {
-	vidInterval = setInterval(html5glasses,200); 
+	vidInterval = setInterval(html5glasses,0); 
 });
 
 video.addEventListener('ended', function() {
