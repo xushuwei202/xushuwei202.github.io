@@ -31,7 +31,7 @@ function html5glasses() {
 /* Events */ 
 
 video.addEventListener('play', function() {
-	vidInterval = setInterval(html5glasses,200); 
+	vidInterval = setInterval(html5glasses,50); 
 });
 
 video.addEventListener('ended', function() {
