@@ -5,6 +5,8 @@ var		video = document.querySelector('video'),
 		ctx = canvas.getContext("2d");
 		glasses.src = "i/glasses.png";
 
+
+
 function html5glasses() {
 	console.log('1111');
 	var elapsed_time = (new Date()).getTime();
@@ -32,9 +34,9 @@ video.addEventListener('play', function() {
 
 video.addEventListener('ended', function() {
 	clearInterval(vidInterval);
-
 });
 
 canvas.addEventListener('click', function() {
+	canvas.removeEventListener('click');
 	video.play();
 });
