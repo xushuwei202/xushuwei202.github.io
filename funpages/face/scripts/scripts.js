@@ -13,7 +13,7 @@ stage.addChild(videoSprite);
 
 var		glasses = new Image(),
 		isStart = false,
-		canvases = document.getElementsByTagName("canvas")[0],
+		canvases = document.getElementsByTagName("canvas"),
 		canvas = canvases[0],
 		ctx = canvas.getContext("2d");
 		glasses.src = "i/glasses.png";
