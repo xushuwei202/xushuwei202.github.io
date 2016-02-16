@@ -195,7 +195,7 @@ var ccv = {
 			pyr[0] = canvas;
 			ret[0] = { "width" : pyr[0].width,
 					   "height" : pyr[0].height,
-					   "data" : pyr[0].getContext("2d").getImageData(0, 0, pyr[0].width, pyr[0].height).data };
+					   "data" : pyr[0].getContext("webgl").getImageData(0, 0, pyr[0].width, pyr[0].height).data };
 			var i;
 			for (i = 1; i <= interval; i++) {
 				pyr[i * 4] = document.createElement("canvas");
