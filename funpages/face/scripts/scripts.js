@@ -31,3 +31,7 @@ video.addEventListener('ended', function() {
 	clearInterval(vidInterval);
 	time_dump.innerHTML = "finished";
 });
+
+canvas.addEventListener('click', function() {
+	video.play();
+});
