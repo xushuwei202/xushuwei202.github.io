@@ -18,14 +18,16 @@ function html5glasses() {
 
 
 	// for (var i = 0; i < comp.length; i++) {
-		ctx.drawImage(glasses, comp[0].x, comp[0].y,comp[0].width, comp[0].height);
+		if(comp.length > 0) {
+			ctx.drawImage(glasses, comp[0].x, comp[0].y,comp[0].width, comp[0].height);
+		}
 	// }
 }
 
 
 
 video.addEventListener('play', function() {
-	vidInterval = setInterval(html5glasses,0); 
+	vidInterval = setInterval(html5glasses,20); 
 });
 
 video.addEventListener('ended', function() {
