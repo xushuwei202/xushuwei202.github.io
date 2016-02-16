@@ -1,23 +1,37 @@
-var		video = document.querySelector('video'),
-		time_dump = document.getElementById("elapsed_time"),
-		glasses = new Image(),
-		canvas = document.getElementById("output"),
+var renderer = PIXI.autoDetectRenderer(640, 1008, { transparent: true });
+document.body.appendChild(renderer.view);
+
+var stage = new PIXI.Container();
+var texture = PIXI.Texture.fromVideo('../videos/v3.mp4');
+var videoSprite = new PIXI.Sprite(texture);
+
+videoSprite.width = renderer.width;
+videoSprite.height = renderer.height;
+
+stage.addChild(videoSprite);
+
+
+var		glasses = new Image(),
+		isStart = false,
+		canvas = document.getElementsByTagName("canvas"),
 		ctx = canvas.getContext("2d");
 		glasses.src = "i/glasses.png";
-
-
+var lastTime = new Date()).getTime()
 
 function html5glasses() {
-	console.log('1111');
 	var elapsed_time = (new Date()).getTime();
+	if(elapsed_time - lastTime < 50) {
+		return;
+	}
 
-	ctx.drawImage(video, 0, 0, video.width, video.height, 0, 0, canvas.width, canvas.height);
+	lastTime = elapsed_time;
 
 	var comp = ccv.detect_objects({ "canvas" : (ccv.pre(canvas)),
 									"cascade" : cascade,
 									"interval" : 5,
 									"min_neighbors" : 1 });
 
+	time_dump.innerHTML = "Process time : " + ((new Date()).getTime() - elapsed_time).toString() + "ms";
 
 	// for (var i = 0; i < comp.length; i++) {
 		if(comp.length > 0) {
@@ -26,17 +40,11 @@ function html5glasses() {
 	// }
 }
 
+animate();
 
+function animate(){
+    renderer.render(stage);
+    requestAnimationFrame(animate);
 
-video.addEventListener('play', function() {
-	vidInterval = setInterval(html5glasses,20); 
-});
-
-video.addEventListener('ended', function() {
-	clearInterval(vidInterval);
-});
-
-canvas.addEventListener('click', function() {
-	canvas.removeEventListener('click');
-	video.play();
-});
+    html5glasses();
+}
