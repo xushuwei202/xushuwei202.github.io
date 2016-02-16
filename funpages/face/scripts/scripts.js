@@ -13,7 +13,8 @@ stage.addChild(videoSprite);
 
 var		glasses = new Image(),
 		isStart = false,
-		canvas = document.getElementsByTagName("canvas")[0],
+		canvases = document.getElementsByTagName("canvas")[0],
+		canvas = canvases[0],
 		ctx = canvas.getContext("2d");
 		glasses.src = "i/glasses.png";
 var 	lastTime = (new Date()).getTime();
