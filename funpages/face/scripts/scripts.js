@@ -6,6 +6,7 @@ var		video = document.querySelector('video'),
 		glasses.src = "i/glasses.png";
 
 function html5glasses() {
+	console.log('1111');
 	var elapsed_time = (new Date()).getTime();
 
 	ctx.drawImage(video, 0, 0, video.width, video.height, 0, 0, canvas.width, canvas.height);
