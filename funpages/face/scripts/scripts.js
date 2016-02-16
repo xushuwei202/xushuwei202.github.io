@@ -16,7 +16,10 @@ var		glasses = new Image(),
 		canvas = document.getElementsByTagName("canvas")[0],
 		ctx = canvas.getContext("2d");
 		glasses.src = "i/glasses.png";
-var lastTime = (new Date()).getTime()
+var 	lastTime = (new Date()).getTime();
+
+	console.log(canvas);
+	console.log(ctx);
 
 function html5glasses() {
 	var elapsed_time = (new Date()).getTime();
@@ -25,7 +28,6 @@ function html5glasses() {
 	}
 
 	lastTime = elapsed_time;
-
 	var comp = ccv.detect_objects({ "canvas" : (ccv.pre(canvas)),
 									"cascade" : cascade,
 									"interval" : 5,
