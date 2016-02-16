@@ -14,7 +14,7 @@ stage.addChild(videoSprite);
 var		glasses = new Image(),
 		isStart = false,
 		canvas = document.getElementsByTagName("canvas"),
-		ctx = canvas.getContext("2d");
+		ctx = canvas[0].getContext("2d");
 		glasses.src = "i/glasses.png";
 var lastTime = (new Date()).getTime()
 
