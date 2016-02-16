@@ -16,7 +16,6 @@ function html5glasses() {
 	// 								"interval" : 5,
 	// 								"min_neighbors" : 1 });
 
-	// time_dump.innerHTML = "Process time : " + ((new Date()).getTime() - elapsed_time).toString() + "ms";
 
 	// for (var i = 0; i < comp.length; i++) {
 	// 	ctx.drawImage(glasses, comp[i].x, comp[i].y,comp[i].width, comp[i].height);
@@ -26,7 +25,7 @@ function html5glasses() {
 
 
 video.addEventListener('play', function() {
-	//vidInterval = setInterval(html5glasses,0); 
+	vidInterval = setInterval(html5glasses,0); 
 });
 
 video.addEventListener('ended', function() {
