@@ -2,7 +2,7 @@ var renderer = PIXI.autoDetectRenderer(640, 1008, { transparent: true });
 document.body.appendChild(renderer.view);
 
 var stage = new PIXI.Container();
-var texture = PIXI.Texture.fromVideo('../videos/v3.mp4');
+var texture = PIXI.Texture.fromVideo('videos/v3.mp4');
 var videoSprite = new PIXI.Sprite(texture);
 
 videoSprite.width = renderer.width;
@@ -13,8 +13,8 @@ stage.addChild(videoSprite);
 
 var		glasses = new Image(),
 		isStart = false,
-		canvas = document.getElementsByTagName("canvas"),
-		ctx = canvas[0].getContext("2d");
+		canvas = document.getElementsByTagName("canvas")[0],
+		ctx = canvas.getContext("2d");
 		glasses.src = "i/glasses.png";
 var lastTime = (new Date()).getTime()
 
