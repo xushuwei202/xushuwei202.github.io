@@ -12,9 +12,9 @@ h1 {
 }
 
 .wrapper {
-	width: 640px;
+	width: 100%;
+	min-width: 640px;
 	margin: 20px auto;
-	padding: 40px;
 	background: #ffffff;
 }
 
@@ -29,4 +29,13 @@ a {
 	color: #392C44;
 	border-bottom: 1px solid #ECD018;
 	text-decoration:none;
+}
+
+video {
+	width: 100%;
+	height: auto;
+}
+
+canvas {
+	width: 100%;
 }
