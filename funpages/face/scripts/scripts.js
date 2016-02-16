@@ -15,7 +15,7 @@ var		glasses = new Image(),
 		isStart = false,
 		canvases = document.getElementsByTagName("canvas"),
 		canvas = canvases[0],
-		ctx = canvas.getContext("2d");
+		ctx = canvas.getContext('webgl') || canvas.getContext('experimental-webgl') || canvas.getContext("2d");
 		glasses.src = "i/glasses.png";
 var 	lastTime = (new Date()).getTime();
 
