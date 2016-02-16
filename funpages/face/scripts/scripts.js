@@ -16,7 +16,7 @@ var		glasses = new Image(),
 		canvas = document.getElementsByTagName("canvas"),
 		ctx = canvas.getContext("2d");
 		glasses.src = "i/glasses.png";
-var lastTime = new Date()).getTime()
+var lastTime = (new Date()).getTime()
 
 function html5glasses() {
 	var elapsed_time = (new Date()).getTime();
