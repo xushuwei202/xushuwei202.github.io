@@ -13,7 +13,7 @@ h1 {
 
 .wrapper {
 	width: 100%;
-	min-width: 640px;
+    max-width: 640px;
 	margin: 20px auto;
 	background: #ffffff;
 }
