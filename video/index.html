@@ -17,13 +17,27 @@
 <body>
 	<div class="page-content">
 		 <div id="DDS_videoPlayer" class="player">
-
+			<video id="video" controls="" autoplay="" x-webkit-airplay="true" webkit-playsinline="true" autoplay="autoplay"></video>
+			
 		 </div>
+
+		 <section class="video-progress">
+		 	<div class="buffered">
+		 	  <span id="buffered-amount"></span>
+		 	</div>
+		 	<div class="progress">
+		 	  <span id="progress-amount"></span>
+		 	</div>
+		 </section>
 		
 		 <section class="video-control">
 		 	<div id="room">
 		 		<div class="room-unit">
 		 			<span>roomid:</span> <input id="room-id" value="55010"/> <button onclick="video.loadData();">go</button>
+		 		</div>
+
+		 		<div class="room-unit">
+		 			<span>videoUrl:</span> <input id="room-url" value=""/> <button id="changeUrlButton" onclick="video.loadData();">Change</button>
 		 		</div>
 		 	</div>
  		    <div id='buttons'>

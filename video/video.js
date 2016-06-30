@@ -24,6 +24,7 @@ $(function(){
 		init : function() {
 			this.platformType = this.judgePlatform();
 			this.createDom();
+			this.addEvent();
 			this.loadData();
 		},
 		createDom: function() {
@@ -34,10 +35,38 @@ $(function(){
         		videoHeight = videoWidth * 3 / 4;
         	}
 	        this.container.height(videoHeight);
-
-	        var videoDom = '<video id="video" controls="" autoplay="" x-webkit-airplay="true" webkit-playsinline="true" autoplay="autoplay"></video>';
-	        this.container.html(videoDom);
 			this.video = this.container.find("video");	
+
+			this.changeUrlButton = $('#changeUrlButton');
+			this.urlInput = $('#room-url');
+		},
+		addEvent: function() {
+			var self = this;
+			this.changeUrlButton.on('click', function(){
+				var url = self.urlInput.val();
+				self.video.attr('src', url);
+				self.video[0].play();
+			});
+
+			window.onload = function(){
+
+			  var myAudio = document.getElementById('video');
+
+			  myAudio.addEventListener('progress', function() {
+			    var bufferedEnd = myAudio.buffered.end(myAudio.buffered.length - 1);
+			    var duration =  myAudio.duration;
+			    if (duration > 0) {
+			      document.getElementById('buffered-amount').style.width = ((bufferedEnd / duration)*100) + "%";
+			    }
+			  });
+
+			  myAudio.addEventListener('timeupdate', function() {
+			    var duration =  myAudio.duration;
+			    if (duration > 0) {
+			      document.getElementById('progress-amount').style.width = ((myAudio.currentTime / duration)*100) + "%";
+			    }
+			  });
+			}
 		},
 		loadData: function() {
 			var _this = this;
@@ -83,7 +112,7 @@ $(function(){
 	            	console.log(data);
 	                if(data.error_code==0) {
 	                  	var _url = data.url_list[0].url;
-	                 	self.video.html('<source src="'+_url+'" />'); 
+	                  	self.video.attr('src', _url);
 	                }
 	            },
 	            error:function(data){

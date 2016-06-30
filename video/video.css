@@ -141,6 +141,38 @@ hr { clear: both; margin-top: 2em;}
     font-size: 1.2rem;
 }
 
-#room-id {
+#room-id, #room-url {
     border: 1px solid #ccc;
+}
+
+#room-url {
+    width: 60%;
+}
+
+.buffered {
+  height: 20px;
+  position: relative;
+  background: #555;
+  width: 100%;
+}
+
+#buffered-amount {
+  display: block;
+  height: 100%;
+  background-color: #777;
+  width: 0;
+}
+
+.progress {
+  margin-top: -20px;
+  height: 20px;  
+  position: relative;
+  width: 300px;
+}
+
+#progress-amount {
+  display: block;
+  height: 100%;
+  background-color: #595;
+  width: 0;
 }
